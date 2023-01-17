@@ -19,3 +19,5 @@ Dotfiles are managed by [chezmoi](https://www.chezmoi.io). This is still WIP, mo
 | Shell | zsh | [config](https://github.com/r2binx/framework-dots/tree/main/private_dot_config/zsh), [fzf-tab](https://github.com/Aloxaf/fzf-tab) completion, [zinit](https://github.com/zdharma-continuum/zinit) based, startup <100ms |
 | Terminal | kitty | |
 | Sudo | doas | replaced sudo with [doas](https://github.com/Duncaen/OpenDoas) |
+| Bar | waybar | |
+| Launcher/Menu | wofi | |
