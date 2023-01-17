@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+DIR=`fd --one-file-system --follow --hidden --type directory -d 1 --exclude '.git' --exclude 'node_modules' . 2> /dev/null | fzf-tmux` \
+    && cd "$DIR"

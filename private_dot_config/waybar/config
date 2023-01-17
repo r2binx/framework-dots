@@ -1,0 +1,185 @@
+{
+  "ipc": true,
+  "position": "top",
+  "mode": "dock",
+  "margin": "5 5 0 5",
+  "modules-left": [
+    "custom/launcher",
+    "idle_inhibitor",
+    "sway/workspaces",
+    "temperature",
+    "memory",
+    "cpu",
+  ],
+  "modules-center": [
+    "custom/theme_toggle",
+    "clock"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "network",
+    "bluetooth",
+    "battery",
+    "tray",
+    "sway/scratchpad",
+    "custom/powermenu",
+  ],
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "wofi_wrapper -l",
+    "tooltip": false
+  },
+  "custom/theme_toggle": {
+    "format": "{icon}",
+    "format-icons": {
+        "light": ["","","",""],
+        "dark": ["","","",""],
+    },
+    "on-click": "~/.config/scripts/toggle_dark.sh",
+    "on-scroll-down": "light -s sysfs/backlight/intel_backlight -A 5 && light -G | cut -d'.' -f1 > $WOBSOCK",
+    "on-scroll-up": "light -s sysfs/backlight/intel_backlight -U 5 && light -G | cut -d'.' -f1 > $WOBSOCK",
+    "exec": "~/.config/waybar/get_theme.sh",
+    "smooth-scrolling-threshold": 6.5,
+    "interval": "once",
+    "return-type": "json",
+    "tooltip": false,
+    "signal": 8,
+  },
+  "sway/workspaces": {
+    "disable-scroll-wraparound": true,
+    "format": " {icon} ",
+    "format-icons": {
+      "urgent": "",
+      "focused": "",
+      "default": ""
+    },
+    "smooth-scrolling-threshold": 4.5
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "",
+      "deactivated": ""
+    },
+    "tooltip": false
+  },
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "婢",
+    "format-icons": {
+      "headphone": [" ", " ", " "],
+      "headset": ["﫽 ", "﫽 ", "﫽 "],
+      "hands-free": [" ", " ", " "],
+      "default": ["", "", ""]
+    },
+    "states": {
+      "warning": 95,
+    },
+    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2*100}' > $WOBSOCK",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2*100}' > $WOBSOCK",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pavucontrol",
+    "smooth-scrolling-threshold": 1.5,
+    "tooltip": false,
+  },
+  "battery": {
+    "interval": 10,
+    "states": {
+      "warning": 25,
+      "critical": 10
+    },
+    "format": "{icon}",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-plugged": " ",
+    "format-charging": " {icon}",
+    "tooltip-format-plugged": "",
+    "tooltip-format-charging": "  Charged in {time} ({capacity}%)",
+    "tooltip-format-discharging": "  Empty in {time} ({capacity}%)",
+    "tooltip": true
+  },
+  "clock": {
+    "on-click-right": "gnome-calendar &",
+    "format": "{:%H:%M}",
+    "tooltip": true,
+    "locale": "de_DE.UTF-8",
+    "timezone": "Europe/Berlin",
+    "format-calendar-weekdays": "<span foreground='#B5E8E0'><b>{}</b></span>",
+    "format-calendar-weeks": "<span foreground='#DDB6F2'><b>{:%V}</b></span>",
+    "calendar-weeks-pos": "right",
+    "tooltip-format": "{:%A, %d %b %Y}\n<tt>{calendar}</tt>",
+  },
+  "memory": {
+    "interval": 4,
+    "format": "﬙ {percentage:2}%",
+    "states": {
+      "warning": 85,
+    },
+  },
+  "cpu": {
+    "interval": 4,
+    "format": " {usage:2}%"
+  },
+  "mpd": {
+    "max-length": 25,
+    "format": "<span foreground='#bb9af7'></span> {title}",
+    "format-paused": " {title}",
+    "format-stopped":"<span foreground='#bb9af7'></span>",
+    "format-disconnected": "",
+    "on-click": "mpc --quiet toggle",
+    "on-click-right": "mpc ls | mpc add",
+    "on-click-middle": "kitty ncmpcpp",
+    "on-scroll-up": "mpc --quiet prev",
+    "on-scroll-down": "mpc --quiet next",
+    "smooth-scrolling-threshold":5,
+    "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
+  },
+  "network": {
+    "interval": 4,
+    "format-wifi": "說 {essid}",
+    "format-ethernet": "  {ifname}",
+    "format-linked": "說 {essid} (No IP)",
+    "format-disconnected": "說 Disconnected",
+    "tooltip-format-wifi": "{essid} ({signalStrength}%)\n  {ipaddr}\n  {gwaddr}/{cidr}",
+    "tooltip-format-ethernet": "  {ipaddr}\n  {gwaddr}/{cidr}",
+    "tooltip-format-disconnected": "Disconnected",
+    "on-click": "networkmanager_dmenu",
+    "on-click-right": "nmtui",
+    "max-length": 30,
+    "tooltip": true
+  },
+  "bluetooth": {
+  	"format-on": "",
+    "format-disabled": "",
+    "format-off": "",
+  	"format-connected": " {num_connections}",
+  	"tooltip-format": "{controller_alias}\t{controller_address}",
+  	"tooltip-format-connected": "{device_enumerate}",
+  	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+  	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "on-click": "blueman-manager"
+  },
+  "temperature": {
+    "hwmon-path": "/sys/class/hwmon/hwmon0/temp1_input",
+    "critical-threshold": 90,
+    "tooltip": false,
+    "format": " {temperatureC}°C"
+  },
+  "sway/scratchpad": {
+    "format": "{icon} {count}",
+    "show-empty": false,
+    "format-icons": ["", ""],
+    "on-click": "swaymsg 'scratchpad show'",
+    "on-click-right": "swaymsg 'move scratchpad'",
+    "tooltip": true,
+    "tooltip-format": "{app}: {title}"
+  },
+  "custom/powermenu": {
+    "format": "",
+    "on-click": "wofi_wrapper -p",
+    "tooltip": false
+  },
+  "tray": {
+    "icon-size": 16,
+    "spacing": 8
+  },
+}

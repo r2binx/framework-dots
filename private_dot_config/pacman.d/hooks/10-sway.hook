@@ -1,0 +1,12 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = sway
+Target = sway-git
+Target = usr/share/wayland-sessions/sway.desktop
+
+[Action]
+Description = Replacing sway with sway_launcher script in /usr/share/wayland-sessions/sway.desktop
+When = PostTransaction
+Exec = /usr/bin/sed -i -r "s/^Exec=.*/Exec=\/usr\/local\/bin\/sway_launcher/" /usr/share/wayland-sessions/sway.desktop

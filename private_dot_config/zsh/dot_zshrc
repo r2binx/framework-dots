@@ -1,0 +1,201 @@
+###
+# .zshrc
+###
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
+
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
+# Store history 
+export HISTTIMEFORMAT="[%F %T] "
+
+export HISTFILE=$ZDOTDIR/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=10000
+
+setopt HIST_IGNORE_ALL_DUPS
+setopt EXTENDED_HISTORY
+setopt INC_APPEND_HISTORY
+setopt appendhistory
+
+# setup
+source $ZDOTDIR/.zaliases
+
+autoload -Uz $ZDOTDIR/functions/autoload-dir
+autoload-dir $ZDOTDIR/functions
+
+## Show hidden items in autocomplete
+setopt globdots
+
+## less color/highlight
+#export LESSOPEN="|/usr/bin/source-highlight-esc.sh %s"
+export LESSOPEN="|${HOME}/.config/lessfilter %s"
+export LESS='-R '
+
+## fzf
+export FZF_DEFAULT_COMMAND="fd --one-file-system --strip-cwd-prefix --follow --hidden --exclude '.git' --exclude 'node_modules' --exclude '.var'"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND --type f --type d"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND --type d"
+
+fzf_clip_copy="--bind 'ctrl-y:execute-silent(printf {} | cut -f 2- | wl-copy --trim-newline)'"
+fzf_toggle_preview="--bind '?:toggle-preview'"
+fzf_default_preview="--preview '([[ -f {} ]] && (bat --style=numbers --color=always {})) || ([[ -d {} ]] && (exa --tree --color=always {} | less)) || echo {} 2> /dev/null | head -200'"
+fzf_toggle_all="--bind 'ctrl-a:toggle-all'"
+fzf_edit_nvim="--bind 'ctrl-e:execute(nvim {+})'"
+export FZF_DEFAULT_OPTS="--height=70% $fzf_toggle_all $fzf_clip_copy $fzf_toggle_preview $fzf_edit_nvim"
+export FZF_CTRL_R_OPTS="$FZF_DEFAULT_OPTS --preview 'echo {}' --preview-window 'down:3:hidden:wrap'"
+export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS --preview 'lsd -LAl --color=always --blocks=permission,user,size,date,name -1 {}'"
+export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview 'less {}' --preview-window 'right:wrap'"
+
+## zoxide
+export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --preview 'lsd -LAl --color=always --blocks=permission,user,size,date,name -1 {2..}' --preview-window=down:wrap"
+export _ZO_ECHO=0
+
+export NVM_LAZY_LOAD=true
+export USE_PISTOL=1
+
+###
+# fzf-tab
+###
+
+zstyle ':fzf-tab:*' switch-group '[' ']'
+
+
+# disable sort when completing `git checkout`
+zstyle ':completion:*:git-checkout:*' sort false
+# set descriptions format to enable group support
+zstyle ':completion:*:descriptions' format '[%d]'
+# set list-colors to enable filename colorizing
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# preview
+zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
+zstyle ':fzf-tab:complete:*:*' fzf-flags --height=70% --preview-window=right,60%,wrap
+zstyle ':fzf-tab:complete:*:options' fzf-preview
+zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
+
+# yay install info
+zstyle ':fzf-tab:complete:yay:*' fzf-preview 'yay -Si $word'
+
+# commands tldr
+zstyle ':fzf-tab:complete:-command-:*' fzf-preview \
+    '(out=$(tldr --color "$word") 2>/dev/null && echo $out) || (out=$(MANWIDTH=$FZF_PREVIEW_COLUMNS man "$word") 2>/dev/null && echo $out) || (out=$(which "$word") && echo $out) || echo "${(P)word}"'
+
+# tldr
+zstyle ':fzf-tab:complete:tldr:argument-1' fzf-preview 'tldr --color $word'
+
+# remember to use single quote here!!!
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'lsd -LAl --color=always --blocks=permission,user,size,date,name -1 $realpath'
+
+#zstyle ':fzf-tab:complete:nvim:*' fzf-preview '([[ -f $realpath ]] && bat $realpath) || ([[ -d $realpath ]] && exa -1 --color=always --icons $realpath)'
+
+zstyle ':fzf-tab:*' fzf-bindings 'ctrl-a:toggle-all'
+
+# kill
+zstyle ':completion:*:*:*:*:processes' command "ps -u $USER -o pid,user,comm -w -w"
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-preview \
+  '[[ $group == "[process ID]" ]] && ps --pid=$word -o cmd --no-headers -w -w'
+zstyle ':fzf-tab:complete:(kill|ps):argument-rest' fzf-flags --preview-window=down:3:wrap
+
+# systemd
+zstyle ':fzf-tab:complete:systemctl-*:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl status $word'
+zstyle ':fzf-tab:complete:systemctl:--user:*' fzf-preview 'SYSTEMD_COLORS=1 systemctl --user status $word'
+
+# env
+zstyle ':fzf-tab:complete:(-command-|-parameter-|-brace-parameter-|export|unset|expand):*' \
+	fzf-preview 'echo ${(P)word}'
+
+# git
+zstyle ':fzf-tab:complete:git-(add|diff|restore):*' fzf-preview \
+	'git diff $word | delta'
+zstyle ':fzf-tab:complete:git-log:*' fzf-preview \
+	'git log --color=always $word'
+zstyle ':fzf-tab:complete:git-show:*' fzf-preview \
+	'case "$group" in
+	"commit tag") git show --color=always $word ;;
+	*) git show --color=always $word | delta ;;
+	esac'
+zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
+	'case "$group" in
+	"modified file") git diff $word | d ;;
+	"recent commit object name") git show --color=always $word | delta ;;
+	*) git log --color=always $word ;;
+	esac'
+
+# load plugins
+
+zinit for \
+    is-snippet \
+  $HOME/.config/zsh/plugins/fzf/fzf.plugin.zsh \
+    is-snippet \
+  $HOME/.config/zsh/plugins/get-fzf-theme/get-fzf-theme.plugin.zsh \
+    is-snippet \
+  $HOME/.config/zsh/plugins/sudo/sudo.plugin.zsh \
+    is-snippet \
+  $HOME/.config/zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+
+# CTRL-T for dedicated context completion
+export FZF_COMPLETION_TRIGGER=''
+bindkey '^T' fzf-file-widget
+bindkey '^I' $fzf_default_completion
+
+zinit light-mode for \
+    pick"async.zsh" \
+    src"pure.zsh" \
+        sindresorhus/pure \
+        kazhala/dotbare \
+        lukechilds/zsh-nvm
+
+zinit wait lucid light-mode for \
+    atinit"zicompinit; zicdreplay" \
+        Aloxaf/fzf-tab \
+        zdharma-continuum/fast-syntax-highlighting \
+    atload"_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions \
+    blockf atpull"zinit creinstall -q ." \
+        zsh-users/zsh-completions \
+    atinit'eval "$(zoxide init zsh)"' \
+        zdharma-continuum/null
+
+# Execute straight from history
+zle     -N     fzf-history-widget-accept
+bindkey '^X^R' fzf-history-widget-accept
+
+# Accept zsh-autosuggestions ctrl+space
+zle     -N      autosuggest-accept
+bindkey '^ '    autosuggest-accept
+
+# nnn
+export NNN_PLUG='x:!chmod +x $nnn;o:fzopen;c:fzcd;j:autojump;i:imgview;l:launch;t:preview-tabbed;p:preview-tui;s:!ww send $nnn'
+export NNN_FIFO=/tmp/nnn.fifo
+
+
+# load zoxide (rust based autojump)
+unalias zi
+#eval "$(zoxide init zsh)"
+
+# tabtab source for pnpm package
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
+

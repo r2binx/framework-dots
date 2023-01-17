@@ -1,0 +1,46 @@
+#
+# .zshenv
+#
+
+# ~/.zshenv should only be a one-liner that sources this file
+# echo ". ~/.config/zsh/.zshenv" > ~/.zshenv
+#
+export TZ="Europe/Berlin"
+export LANG="en_US.UTF-8"
+export LANGUAGE="en"
+export LC_ALL="en_US.UTF-8"
+
+export ZDOTDIR=${ZDOTDIR:-~/.config/zsh}
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
+export XDG_CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
+export XDG_DATA_HOME=${XDG_DATA_HOME:-~/.local/share}
+export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-~/.xdg}
+
+export EDITOR="nvim"
+export VISUAL="neovide"
+export NEOVIDE_NO_VSYNC=true
+export NEOVIDE_MULTIGRID=true
+export MOZ_USE_XINPUT2=1
+export QT_QPA_PLATFORMTHEME="gnome"
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export PNPM_HOME=~/.local/share/pnpm
+export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+export ELECTRON_TRASH=trash-cli
+export JAVA_HOME=/usr/lib/jvm/java-18-jdk
+
+typeset -U path PATH
+path=($PNPM_HOME /opt/android-sdk/platform-tools ~/.local/bin ~/.local/share/JetBrains/Toolbox/scripts $path)
+export PATH
+
+export ZFUNCDIR=${ZFUNCDIR:-${ZDOTDIR:-$HOME/.config/zsh}/functions}
+export ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-~}/.zplugins}
+
+# Ensure that a non-login, non-interactive shell has a defined environment.
+# if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s ${ZDOTDIR:-~}/.zprofile ]]; then
+#   source ${ZDOTDIR:-~}/.zprofile
+# fi
+
+# Set LS_COLORS
+. /usr/share/LS_COLORS/dircolors.sh
+

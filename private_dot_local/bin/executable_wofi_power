@@ -1,0 +1,26 @@
+#!/bin/sh
+#[ -f /tmp/theme ] && read theme < /tmp/theme || theme=$([ $(gsettings get org.gnome.desktop.interface color-scheme) = "'default'" ] && echo "light" || echo "dark")
+
+dir="$HOME/.config/wofi"
+
+
+entries=("  Lock" "  Logout" "鈴  Suspend" "  Hibernate" "勒  Reboot" "⏻  Shutdown")
+
+
+selected=$(printf '%s\n' "${entries[@]}" | wofi -d -p "Power Menu" -c "${dir}/wofi_dmenu.conf" -W 240 -L 8 | awk '{print tolower($2)}')
+
+case $selected in
+  lock)
+    exec ~/.config/sway/swaylock.sh;;
+  logout)
+    swaymsg exit;;
+  suspend)
+    exec systemctl suspend;;
+  hibernate)
+    exec systemctl hibernate;;
+  reboot)
+    exec systemctl reboot;;
+  shutdown)
+    exec systemctl poweroff -i;;
+esac
+

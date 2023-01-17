@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = blueman
+Target = etc/xdg/autostart/blueman.desktop
+
+[Action]
+Description = Don't autostart blueman
+When = PostTransaction
+Exec = /usr/bin/sh -c "mv /etc/xdg/autostart/blueman.desktop /etc/xdg/autostart/blueman.desktop.bak"

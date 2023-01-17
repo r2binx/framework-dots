@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = touchegg
+Target = etc/xdg/autostart/touchegg.desktop
+
+[Action]
+Description = Don't autostart touchegg
+When = PostTransaction
+Exec = /usr/bin/sh -c "mv /etc/xdg/autostart/touchegg.desktop /etc/xdg/autostart/touchegg.desktop.bak"

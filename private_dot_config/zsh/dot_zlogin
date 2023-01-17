@@ -1,0 +1,24 @@
+{
+  # Compile zcompdump, if modified, to increase startup speed.
+  zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
+  if [[ -s "$zcompdump" && (! -s "${zcompdump}.zwc" || "$zcompdump" -nt "${zcompdump}.zwc") ]]; then
+    zcompile "$zcompdump"
+  fi
+} &!
+
+[[ ${XDG_SESSION_TYPE} == "tty" ]] && return
+
+
+if [[ ${XDG_SESSION_TYPE} == "x11" ]]; then
+	echo "Running on X11"
+	export MOZ_ENABLE_WAYLAND=0
+	export QT_QPA_PLATFORM="xcb"
+elif [[ ${XDG_SESSION_TYPE} == "wayland" ]]; then
+	echo "Running on Wayland"
+	export MOZ_ENABLE_WAYLAND=1
+	export QT_QPA_PLATFORM="wayland;xcb"
+else
+	echo "Running on ${XDG_SESSION_TYPE}"
+fi
+
+~/.config/scripts/decide_theme.sh
