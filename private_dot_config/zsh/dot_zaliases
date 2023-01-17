@@ -1,0 +1,57 @@
+#!/usr/bin/env zsh
+
+[[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
+
+alias ds="doas "
+alias dse="doas rvim"
+alias sudoedit="doas rvim"
+alias igt="intel_gpu_top"
+alias df="df -hT --total"
+alias hh="cd ~"
+alias cdtmp="cd $(mktemp -d)"
+alias sdn="doas shutdown now"
+alias grep="grep --color=auto"
+alias se="doas $EDITOR"
+alias e="$EDITOR"
+alias hx="helix"
+alias neovide="env -u WAYLAND_DISPLAY neovide"
+alias d="kitty +kitten diff"
+alias dots="dotbare"
+alias ssc="doas systemctl"
+alias sc="systemctl --user"
+alias gua="git remote | xargs -L1 git push --all"
+alias rc="rsync -a -h --info=progress2"
+alias rmv="rsync -a -h --info=progress2 --remove-source-files"
+alias mkd="mkdir -pv"
+alias rm="rm -I"
+# Adding color
+alias ls="lsd"
+alias la="lsd -A"
+alias ll="lsd -LAl --blocks=permission,user,size,date,name"
+alias lsl="lsd -la --date date"
+alias noice="nyancat"
+alias @nas="ssh heimdall"
+alias @pi="ssh pihole"
+alias @mail="ssh mail"
+alias wguhome="doas systemctl start wg-quick@home"
+alias wgdhome="doas systemctl stop wg-quick@home"
+alias fpu="flatpak update"
+#alias man="batman --paging=always --color=always"
+alias qr='qrencode -m 2 -t utf8 <<< "$1"'
+alias tree="lsd --tree"
+alias exag="exa -la --color always --group-directories-first --icons --git"
+alias upgrade="~/.config/scripts/updatekitten.sh"
+alias inst="yay -S"
+alias gpgdec='echo "$(wl-paste)" | gpg -d'
+alias wttr='curl https://wttr.in/Filderstadt'
+alias open='xdg-open '
+alias gogh='bash -c "$(wget -qO- https://git.io/vQgMr)"'
+alias stonks='tickrs -c candle -t 1W --show-volumes'
+alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
+alias myip="curl ifconfig.co"
+alias cal="cal -m -w"
+alias lgit="lazygit"
+
+# nushell as calculator
+alias calc='noglob zcalc'
+aliases[=]='noglob zcalc'
