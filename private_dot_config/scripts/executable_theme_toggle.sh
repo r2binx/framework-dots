@@ -88,7 +88,7 @@ set_xresources_theme() {
         ;;
     esac
 
-    sed -i -r "s/(latte|mocha).Xresources/${selected}/" ~/.Xresources
+    sed -i -r "s@^#include \"$XDG_CONFIG_HOME/xresourcecolors/.*\"@#include \"$XDG_CONFIG_HOME/xresourcecolors/${selected}\"@" ~/.Xresources
     [ -n "${DISPLAY}" ] && xrdb ~/.Xresources
 
 }
