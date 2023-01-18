@@ -4,3 +4,10 @@
     exact = true
     checksum.sha256 = "c3b41058ca2f45d933cf773b19780db03fc547c9bf2d32372a2616667336f18d"
     include = ["eisvogel.latex", "icon.png"]
+["Documents/Template/latex/briefvorlage"]
+    type = "archive"
+    url = "https://github.com/PanCakeConnaisseur/latex-briefvorlage-din-5008/archive/master.tar.gz"
+    exact = true
+    stripComponents = 1
+    refreshPeriod = "168h"
+    exclude = ["*/Beispiele/**"]
