@@ -1,0 +1,30 @@
+#!/bin/bash
+
+FILEPATH="$(realpath ${1%%.*})"
+DIR=$(dirname "$(realpath $1)")
+
+md_to_pdf () {
+	cd "${DIR}"
+	pandoc $1.md -o $1.pdf -f markdown -t latex --template ~/Documents/Template/eisvogel.latex --listings --toc;
+}
+
+
+if [[ ! -f $FILEPATH.pdf ]]
+then
+	md_to_pdf $FILEPATH
+fi
+
+zathura "${FILEPATH}.pdf" &
+
+echo "${DIR}"
+
+inotifywait -q -e close_write,moved_to -m --format %e/%f "${DIR}" |
+	while IFS=/ read -r events file
+	do
+		if [ "$file" = $(basename $1) ]
+		then
+			echo "Updating preview"
+			md_to_pdf $FILEPATH
+		fi
+	done
+
