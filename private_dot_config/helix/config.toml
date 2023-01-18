@@ -21,7 +21,10 @@ hidden = true
 
 [keys.normal]
 C-s = ":w" # Maps the Ctrl-s to the typable command :w which is an alias for :write (save file)
-"C-S-o" = ":open ~/.config/helix/config.toml" # Maps the Ctrl-o to opening of the helix config file
+C-o = ":config-open" # Maps the Ctrl-o to opening of the helix config file
+C-r = ":config-reload" # Maps Ctrl-r to reload helix config
 g = { a = "code_action" } # Maps `ga` to show possible code actions
 "ret" = ["open_below", "normal_mode"] # Maps the enter key to open_below then re-enter normal mode
-
+# Collapse selection in insert mode
+i = ["insert_mode", "collapse_selection"]
+a = ["append_mode", "collapse_selection"]
