@@ -9,4 +9,4 @@ Xft.dpi: 96
 *.dpi: 96
 Xft.rgba: rgb
 
-#include "/home/robin/.config/xresourcecolors/frappe.Xresources"
+#include "~/.config/xresourcecolors/frappe.Xresources"
