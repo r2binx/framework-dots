@@ -5,7 +5,7 @@ DIR=$(dirname "$(realpath $1)")
 
 md_to_pdf () {
 	cd "${DIR}"
-	pandoc $1.md -o $1.pdf -f markdown -t latex --template ~/Documents/Template/eisvogel.latex --listings --toc;
+	pandoc $1.md -o $1.pdf -f markdown -t latex --template ~/Documents/Template/latex/eisvogel.latex --listings --toc;
 }
 
 

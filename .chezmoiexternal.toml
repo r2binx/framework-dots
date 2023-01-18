@@ -1,6 +1,6 @@
-["Documents/Templates/latex"]
+["Documents/Template/latex"]
     type = "archive"
     url = "https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.1.0/Eisvogel-2.1.0.tar.gz"
     exact = true
     checksum.sha256 = "c3b41058ca2f45d933cf773b19780db03fc547c9bf2d32372a2616667336f18d"
-    include = ["*/eisvogel.latex", "*/icon.png"]
+    include = ["eisvogel.latex", "icon.png"]
