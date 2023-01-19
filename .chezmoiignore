@@ -1,0 +1,5 @@
+# only install pacman conf/hooks on arch
+{{- if ne .chezmoi.osRelease.id "arch" }}
+.config/pacman
+.config/pacman.d
+{{- end }}
