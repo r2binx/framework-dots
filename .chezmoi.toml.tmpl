@@ -1,0 +1,17 @@
+{{- $interactive := stdinIsATTY -}}
+{{- $sway_conf := true -}}
+[git]
+autoCommit = true
+[edit]
+command = "nvim"
+[diff]
+command = "delta"
+[merge]
+command = "nvim"
+args = ["-d", "{{`{{ .Destination }}`}}", "{{`{{ .Source }}`}}", "{{`{{ .Target }}`}}"]
+{{ if $interactive }}
+{{-     $sway_conf = promptBool "Store Sway config files" true -}}
+{{- end -}}
+[data]
+sway_conf = {{ $sway_conf }}
+

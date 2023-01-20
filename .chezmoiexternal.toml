@@ -16,3 +16,7 @@
     url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh"
     refreshPeriod = "168h"
     executable = true
+[".local/share/themes"]
+    type = "archive"
+    exact = false
+    url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.2/adw-gtk3v4-2.tar.xz"

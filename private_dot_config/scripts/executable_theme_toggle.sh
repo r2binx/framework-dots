@@ -31,7 +31,7 @@ set_adw_gtk_theme() {
         cp "${dir_3}/${themes[1]}"  "${dir_3}/gtk.css"
         cp "${dir_4}/${themes[1]}"  "${dir_4}/gtk.css"
         sed -i -e "s/^\(gtk-application-prefer-dark-theme=*\)\(.*\)*$/\11/" $dir_3/settings.ini $dir_4/settings.ini
-        sed -i -e "s/^\(gtk-theme-name=*\)\(.*\)*$/\1'Adw-dark'/" "$dir_3"/settings.ini
+        sed -i -e "s/^\(gtk-theme-name=*\)\(.*\)*$/\1'adw-gtk3-dark'/" "$dir_3"/settings.ini
         ;;
     light)
         #cp "${dir_3}/${themes[0]}" "${dir_3}/gtk.css"
@@ -40,7 +40,7 @@ set_adw_gtk_theme() {
         echo "" > "${dir_3}/gtk.css"
         echo "" > "${dir_4}/gtk.css"
         sed -i -e "s/^\(gtk-application-prefer-dark-theme=*\)\(.*\)*$/\10/" "$dir_3"/settings.ini "$dir_4"/settings.ini
-        sed -i -e "s/^\(gtk-theme-name=*\)\(.*\)*$/\1'Adw'/" "$dir_3"/settings.ini
+        sed -i -e "s/^\(gtk-theme-name=*\)\(.*\)*$/\1'adw-gtk3'/" "$dir_3"/settings.ini
         ;;
     *)
         echo "Invalid argument: ${1}"
@@ -288,13 +288,13 @@ set_gtk_settings() {
     case $1 in
         dark)
             gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-            gsettings set org.gnome.desktop.interface gtk-theme 'Adw-dark'
+            gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3-dark'
             gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Ice'
             set_adw_gtk_theme dark
             ;;
         light)
             gsettings set org.gnome.desktop.interface color-scheme 'default'
-            gsettings set org.gnome.desktop.interface gtk-theme 'Adw'
+            gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
             gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
             set_adw_gtk_theme light
             ;;

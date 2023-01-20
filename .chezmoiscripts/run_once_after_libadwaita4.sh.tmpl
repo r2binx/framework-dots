@@ -1,0 +1,42 @@
+#!/usr/bin/env sh
+
+# This should trigger to rerun the script once adw-gtk3 changes
+# adw-gtk3 hash: {{ include "../../../.local/share/themes/adw-gtk3/gtk-3.0/gtk.css" | sha256sum }}
+
+printf """
+
+This forces GTK4 apps to use the libadwaita theme
+libadwaita currently needs to be installed
+
+"""
+
+has_cmd() {
+  command -v "$1" >/dev/null 2>&1
+}
+
+rm -rf ~/.local/share/themes/adw-gtk3{,-dark}/gtk-4.0
+mkdir -p ~/.local/share/themes/adw-gtk3{,-dark}/gtk-4.0
+
+{{- if eq .chezmoi.osRelease.id "arch" }}
+adw_src="/usr/lib/libadwaita-1.so"
+{{- else if eq .chezmoi.osRelease.id "fedora" }}
+adw_src="/usr/lib64/libadwaita-1.so.0"
+{{- end }}
+for rpath in $(gresource list "$adw_src" | grep '^/org/gnome/Adwaita/styles/'); do
+   resource=${rpath#/org/gnome/Adwaita/styles/}
+   if [[ "$resource" == */* ]]; then
+      mkdir -p ~/.local/share/themes/adw-gtk3/gtk-4.0/"${resource%/*}"
+   fi
+   gresource extract /usr/lib/libadwaita-1.so "$rpath" > ~/.local/share/themes/adw-gtk3/gtk-4.0/"$resource"
+   ln -sfrT ~/.local/share/themes/adw-gtk3{,-dark}/gtk-4.0/"${resource%%/*}"
+done
+
+cat ~/.local/share/themes/adw-gtk3/gtk-4.0/{defaults-light,base}.css > ~/.local/share/themes/adw-gtk3/gtk-4.0/gtk.css
+cat ~/.local/share/themes/adw-gtk3-dark/gtk-4.0/{defaults-dark,base}.css > ~/.local/share/themes/adw-gtk3-dark/gtk-4.0/gtk.css
+ln -sfT ../../adw-gtk3-dark/gtk-4.0/gtk.css ~/.local/share/themes/adw-gtk3/gtk-4.0/gtk-dark.css
+ln -sfT gtk.css ~/.local/share/themes/adw-gtk3-dark/gtk-4.0/gtk-dark.css
+
+if has_cmd flatpak; then
+   set -x
+   sudo flatpak override --filesystem=~/.local/share/themes
+fi
