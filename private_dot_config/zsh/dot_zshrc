@@ -49,7 +49,6 @@ autoload-dir $ZDOTDIR/functions
 setopt globdots
 
 ## less color/highlight
-#export LESSOPEN="|/usr/bin/source-highlight-esc.sh %s"
 export LESSOPEN="|${HOME}/.config/lessfilter %s"
 export LESS='-R '
 
@@ -86,8 +85,6 @@ zstyle ':fzf-tab:*' switch-group '[' ']'
 zstyle ':completion:*:git-checkout:*' sort false
 # set descriptions format to enable group support
 zstyle ':completion:*:descriptions' format '[%d]'
-# set list-colors to enable filename colorizing
-zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # preview
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
@@ -144,27 +141,24 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
 	esac'
 
 # load plugins
+zinit pack for ls_colors
+zinit pack"bgn-binary+keys" for fzf
 
-zinit for \
-    is-snippet \
-  $HOME/.config/zsh/plugins/fzf/fzf.plugin.zsh \
-    is-snippet \
-  $HOME/.config/zsh/plugins/get-fzf-theme/get-fzf-theme.plugin.zsh \
-    is-snippet \
-  $HOME/.config/zsh/plugins/sudo/sudo.plugin.zsh \
-    is-snippet \
-  $HOME/.config/zsh/plugins/fancy-ctrl-z/fancy-ctrl-z.plugin.zsh
+zinit is-snippet for \
+    $HOME/.config/zsh/plugins/get-fzf-theme/get-fzf-theme.plugin.zsh \
+    OMZP::sudo \
+    OMZP::fancy-ctrl-z
 
 # CTRL-T for dedicated context completion
 export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-file-widget
-bindkey '^I' $fzf_default_completion
+bindkey '^I' expand-or-complete
 
 zinit light-mode for \
-    pick"async.zsh" \
-    src"pure.zsh" \
-        sindresorhus/pure \
-        kazhala/dotbare \
+    as"command" from"gh-r" \
+    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+    atpull"%atclone" src"init.zsh" \
+        starship/starship \
         lukechilds/zsh-nvm
 
 zinit wait lucid light-mode for \
@@ -175,7 +169,7 @@ zinit wait lucid light-mode for \
         zsh-users/zsh-autosuggestions \
     blockf atpull"zinit creinstall -q ." \
         zsh-users/zsh-completions \
-    atinit'eval "$(zoxide init zsh)"' \
+    atinit'unalias zi; eval "$(zoxide init zsh)"' \
         zdharma-continuum/null
 
 # Execute straight from history
@@ -189,11 +183,6 @@ bindkey '^ '    autosuggest-accept
 # nnn
 export NNN_PLUG='x:!chmod +x $nnn;o:fzopen;c:fzcd;j:autojump;i:imgview;l:launch;t:preview-tabbed;p:preview-tui;s:!ww send $nnn'
 export NNN_FIFO=/tmp/nnn.fifo
-
-
-# load zoxide (rust based autojump)
-unalias zi
-#eval "$(zoxide init zsh)"
 
 # tabtab source for pnpm package
 # uninstall by removing these lines

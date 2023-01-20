@@ -41,6 +41,3 @@ export ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-~}/.zplugins}
 #   source ${ZDOTDIR:-~}/.zprofile
 # fi
 
-# Set LS_COLORS
-. ~/.local/bin/lscolors.sh
-
