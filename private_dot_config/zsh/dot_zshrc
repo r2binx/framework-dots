@@ -71,7 +71,6 @@ export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview 'less {}' --preview-window '
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --preview 'lsd -LAl --color=always --blocks=permission,user,size,date,name -1 {2..}' --preview-window=down:wrap"
 export _ZO_ECHO=0
 
-export NVM_LAZY_LOAD=true
 export USE_PISTOL=1
 
 ###
@@ -154,12 +153,12 @@ export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-file-widget
 bindkey '^I' expand-or-complete
 
-zinit light-mode for \
-    as"command" from"gh-r" \
+zinit ice as"command" from"gh-r" \
     atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-    atpull"%atclone" src"init.zsh" \
-        starship/starship \
-        lukechilds/zsh-nvm
+    atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
+zinit light asdf-vm/asdf
 
 zinit wait lucid light-mode for \
     atinit"zicompinit; zicdreplay" \
@@ -183,8 +182,4 @@ bindkey '^ '    autosuggest-accept
 # nnn
 export NNN_PLUG='x:!chmod +x $nnn;o:fzopen;c:fzcd;j:autojump;i:imgview;l:launch;t:preview-tabbed;p:preview-tui;s:!ww send $nnn'
 export NNN_FIFO=/tmp/nnn.fifo
-
-# tabtab source for pnpm package
-# uninstall by removing these lines
-[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
 
