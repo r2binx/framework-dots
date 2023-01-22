@@ -303,7 +303,7 @@ for_window [app_id = "qt5ct"] floating enable
 for_window [app_id = "gnome-tweaks"] floating enable
 for_window [class = "Bluetooth-sendto" instance = "bluetooth-sendto"] floating enable
 for_window [window_role = "Preferences"] floating enable
-for_window [title = "Picture-in-Picture"] floating enable, resize set width 670 px height 430 px, sticky enable
+for_window [title = "Picture-in-Picture"] floating enable, resize set width 670 px height 430 px, sticky enable, opacity 0.8
 for_window [app_id = "flameshot"] floating enable
 for_window [title = "Firefox - Choose User Profile" ] floating enable
 for_window [app_id="toolbox"]                    floating enable
@@ -390,6 +390,24 @@ bindsym $mod+Shift+g mode "gaps"
 # Toggle gaps on (5px)/off
 bindsym $mod+g gaps inner current toggle 5
 
+mode "opacity" {
+    # increase opacity (less transparent)
+    bindsym equal opacity plus 0.05
+    # decrease opacity (more transparent)
+    bindsym minus opacity minus 0.05
+
+    # set opacity to 70%
+    bindsym t opacity set 0.8
+
+    # disable transparency
+    bindsym s opacity set 1
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+o mode "opacity"
 
 include ~/.config/sway/frappe_colors
 

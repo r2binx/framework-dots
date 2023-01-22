@@ -140,8 +140,14 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
 	esac'
 
 # load plugins
-zinit pack for ls_colors
+# Install fzf
 zinit pack"bgn-binary+keys" for fzf
+
+# Setup nice LS_COLORS for exa/ls/zsh
+zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
+zinit light trapd00r/LS_COLORS
 
 zinit is-snippet for \
     $HOME/.config/zsh/plugins/get-fzf-theme/get-fzf-theme.plugin.zsh \

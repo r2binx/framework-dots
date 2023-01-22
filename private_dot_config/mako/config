@@ -1,0 +1,20 @@
+# General
+font=ComicCodeLigatures Nerd Font 12
+anchor=top-right
+margin=10
+padding=10
+border-radius=8
+ignore-timeout=1
+default-timeout=5000
+group-by=summary
+
+#Colors
+background-color=#1E1D2F
+text-color=#D9E0EE
+border-color=#96CDFB
+progress-color=over #302D41
+
+[urgency=high]
+border-color=#F8BD96
+default-timeout=0
+
