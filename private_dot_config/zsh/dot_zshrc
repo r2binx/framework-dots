@@ -189,3 +189,4 @@ bindkey '^ '    autosuggest-accept
 export NNN_PLUG='x:!chmod +x $nnn;o:fzopen;c:fzcd;j:autojump;i:imgview;l:launch;t:preview-tabbed;p:preview-tui;s:!ww send $nnn'
 export NNN_FIFO=/tmp/nnn.fifo
 
+# vim:ft=zsh

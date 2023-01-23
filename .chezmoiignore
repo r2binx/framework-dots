@@ -1,5 +1,6 @@
 # only install pacman conf/hooks on arch
 .local/share/themes/adw-gtk3/gtk-3.0/gtk.css
+.config/kitty/current-theme.conf
 {{- if ne .chezmoi.osRelease.id "arch" }}
 .config/pacman
 .config/pacman.d
@@ -7,6 +8,7 @@
 {{- if not .sway_conf }}
 .config/sway
 .config/wofi
+.config/mako
 .config/waybar
 .config/xdg-desktop-portal-wlr
 {{- end }}

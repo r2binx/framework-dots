@@ -55,3 +55,5 @@ alias lgit="lazygit"
 # nushell as calculator
 alias calc='noglob zcalc'
 aliases[=]='noglob zcalc'
+
+# vim:ft=zsh

@@ -41,3 +41,4 @@ export ZPLUGINDIR=${ZPLUGINDIR:-${ZDOTDIR:-~}/.zplugins}
 #   source ${ZDOTDIR:-~}/.zprofile
 # fi
 
+# vim:ft=zsh

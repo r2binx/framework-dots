@@ -22,3 +22,5 @@ else
 fi
 
 ~/.config/scripts/decide_theme.sh
+
+# vim:ft=zsh
