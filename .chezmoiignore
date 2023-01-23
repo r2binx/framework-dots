@@ -4,6 +4,8 @@
 {{- if ne .chezmoi.osRelease.id "arch" }}
 .config/pacman
 .config/pacman.d
+.config/yay
+.config/paru
 {{- end }}
 {{- if not .sway_conf }}
 .config/sway
