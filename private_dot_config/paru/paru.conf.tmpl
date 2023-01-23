@@ -13,7 +13,7 @@ PgpFetch
 Devel
 Provides
 DevelSuffixes = -git -cvs -svn -bzr -darcs -always -hg -fossil
-CloneDir = /home/robin/.cache/aur
+CloneDir = {{ .chezmoi.homeDir }}/.cache/aur
 #AurOnly
 BottomUp
 RemoveMake = ask
@@ -40,3 +40,5 @@ SkipReview
 #FileManager = vifm
 #MFlags = --skippgpcheck
 #Sudo = doas
+
+# vim:ft=conf
