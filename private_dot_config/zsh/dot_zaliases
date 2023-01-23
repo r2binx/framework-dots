@@ -50,7 +50,7 @@ alias stonks='tickrs -c candle -t 1W --show-volumes'
 alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1 | sed -e's/:$//g' | grep -v '[0-9]$' | xargs tail -f"
 alias myip="curl ifconfig.co"
 alias cal="cal -m -w"
-alias lgit="lazygit"
+alias lg="lazygit"
 
 # nushell as calculator
 alias calc='noglob zcalc'
