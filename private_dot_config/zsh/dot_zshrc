@@ -143,6 +143,12 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
 # Install fzf
 zinit pack"bgn-binary+keys" for fzf
 
+zinit wait"1" lucid from"gh-r" as"null" for \
+     sbin"**/fd"        @sharkdp/fd \
+     sbin"**/bat"       @sharkdp/bat \
+     sbin"**/lazygit"   jesseduffield/lazygit \
+     sbin"bin/exa* -> exa"  ogham/exa
+
 # Setup nice LS_COLORS for exa/ls/zsh
 zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atpull'%atclone' pick"clrs.zsh" nocompile'!' \
