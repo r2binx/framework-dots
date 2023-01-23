@@ -27,7 +27,7 @@ for rpath in $(gresource list "$adw_src" | grep '^/org/gnome/Adwaita/styles/'); 
    if [[ "$resource" == */* ]]; then
       mkdir -p ~/.local/share/themes/adw-gtk3/gtk-4.0/"${resource%/*}"
    fi
-   gresource extract /usr/lib/libadwaita-1.so "$rpath" > ~/.local/share/themes/adw-gtk3/gtk-4.0/"$resource"
+   gresource extract "$adw_src" "$rpath" > ~/.local/share/themes/adw-gtk3/gtk-4.0/"$resource"
    ln -sfrT ~/.local/share/themes/adw-gtk3{,-dark}/gtk-4.0/"${resource%%/*}"
 done
 
