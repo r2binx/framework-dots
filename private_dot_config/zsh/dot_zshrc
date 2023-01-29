@@ -25,7 +25,7 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
-[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh 2> /dev/null)"
 
 # Store history 
 export HISTTIMEFORMAT="[%F %T] "
@@ -62,7 +62,7 @@ fzf_toggle_preview="--bind '?:toggle-preview'"
 fzf_default_preview="--preview '([[ -f {} ]] && (bat --style=numbers --color=always {})) || ([[ -d {} ]] && (exa --tree --color=always {} | less)) || echo {} 2> /dev/null | head -200'"
 fzf_toggle_all="--bind 'ctrl-a:toggle-all'"
 fzf_edit_nvim="--bind 'ctrl-e:execute(nvim {+})'"
-export FZF_DEFAULT_OPTS="--height=70% $fzf_toggle_all $fzf_clip_copy $fzf_toggle_preview $fzf_edit_nvim"
+export FZF_DEFAULT_OPTS="--height=70% --min-height=20 $fzf_toggle_all $fzf_clip_copy $fzf_toggle_preview $fzf_edit_nvim"
 export FZF_CTRL_R_OPTS="$FZF_DEFAULT_OPTS --preview 'echo {}' --preview-window 'down:3:hidden:wrap'"
 export FZF_ALT_C_OPTS="$FZF_DEFAULT_OPTS --preview 'lsd -LAl --color=always --blocks=permission,user,size,date,name -1 {}'"
 export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview 'less {}' --preview-window 'right:wrap'"
@@ -87,7 +87,7 @@ zstyle ':completion:*:descriptions' format '[%d]'
 
 # preview
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
-zstyle ':fzf-tab:complete:*:*' fzf-flags --height=70% --preview-window=right,60%,wrap
+zstyle ':fzf-tab:complete:*:*' fzf-flags --height=70% --min-height=20 --preview-window 'right,60%,wrap,<30(down,wrap,70%)'
 zstyle ':fzf-tab:complete:*:options' fzf-preview
 zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
 
@@ -143,19 +143,29 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
 # Install fzf
 zinit pack"bgn-binary+keys" for fzf
 
-zinit wait"1" lucid from"gh-r" as"null" for \
-     sbin"**/fd"        @sharkdp/fd \
-     sbin"**/bat"       @sharkdp/bat \
-     sbin"**/lazygit"   jesseduffield/lazygit \
-     sbin"bin/exa* -> exa"  ogham/exa
+zinit wait"1" lucid from"gh-r" nocompile pick"/dev/null" for \
+    atclone"cp -vf **/fd.1 $ZPFX/man/man1/fd.1;
+            cp -vf **/autocomplete/_fd _fd" \
+    atpull"%atclone" \
+    sbin"**/fd"        @sharkdp/fd \
+    atclone"cp -vf **/bat.1 $ZPFX/man/man1/bat.1;
+            cp -vf **/autocomplete/bat.zsh _bat" \
+    atpull"%atclone" \
+    sbin"**/bat"       @sharkdp/bat \
+    sbin"**/lazygit"   jesseduffield/lazygit \
+    atclone"cp -vf completions/exa.zsh _exa_completion;
+            cp -vf man/exa.1 $ZPFX/man/man1/exa.1;
+            cp -vf man/exa_colors.5 $ZPFX/man/man5/exa_colors.5" \
+    atpull"%atclone" \
+    sbin"bin/exa* -> exa"  ogham/exa
 
 # Setup nice LS_COLORS for exa/ls/zsh
-zinit ice atclone"dircolors -b LS_COLORS > clrs.zsh" \
+zinit ice lucid wait atclone"dircolors -b LS_COLORS > clrs.zsh" \
     atpull'%atclone' pick"clrs.zsh" nocompile'!' \
     atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
 zinit light trapd00r/LS_COLORS
 
-zinit is-snippet for \
+zinit lucid wait is-snippet for \
     $HOME/.config/zsh/plugins/get-fzf-theme/get-fzf-theme.plugin.zsh \
     OMZP::sudo \
     OMZP::fancy-ctrl-z
@@ -170,9 +180,10 @@ zinit ice as"command" from"gh-r" \
     atpull"%atclone" src"init.zsh"
 zinit light starship/starship
 
+zinit ice lucid wait
 zinit light asdf-vm/asdf
 
-zinit wait lucid light-mode for \
+zinit lucid wait light-mode for \
     atinit"zicompinit; zicdreplay" \
         Aloxaf/fzf-tab \
         zdharma-continuum/fast-syntax-highlighting \
