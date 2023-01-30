@@ -19,7 +19,16 @@ vim.o.autoindent = false
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- EasyMotion
+vim.g.EasyMotion_do_mapping = 0
+vim.g.EasyMotion_smartcase = 1
+vim.g.EasyMotion_use_smartsign_us = 1
 
+wk.register({
+  ["<leader>e"] = { "<Plug>(easymotion-prefix)", "EasyMotion prefix", noremap = true },
+  ["<leader>ef"] = { "<Plug>(easymotion-s)", "EasyMotion anywhere", noremap = true },
+  ["<leader>ec"] = { "<Plug>(easymotion-f)", "EasyMotion to char forward", noremap = true },
+})
 
 -- CamelCaseMotion
 -- wk.register({

@@ -46,5 +46,6 @@ return require('packer').startup(function()
     use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }
     -- Motion
     use 'chaoren/vim-wordmotion'
+    use 'easymotion/vim-easymotion'
     -- use 'bkad/CamelCaseMotion'
 end)
