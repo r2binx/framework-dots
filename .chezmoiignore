@@ -1,5 +1,4 @@
 # only install pacman conf/hooks on arch
-.local/share/themes/adw-gtk3/gtk-3.0/gtk.css
 .config/kitty/current-theme.conf
 {{- if ne .chezmoi.osRelease.id "arch" }}
 .config/pacman
