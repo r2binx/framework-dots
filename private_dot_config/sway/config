@@ -69,8 +69,8 @@ set $laptop eDP-1
 #bindswitch lid:on output $laptop disable
 #bindswitch lid:off output $laptop enable
 
-xwayland force
-exec_always 'xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1'
+xwayland enable
+#exec_always 'xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1'
 output $laptop {
     # Custom modeline for virtual resultion with clean 2x scaling (for xwayland)
     # modeline 453.250  3240 3288 3320 3400  2160 2163 2173 2222  +HSync -VSync
