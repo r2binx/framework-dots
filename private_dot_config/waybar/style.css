@@ -67,10 +67,6 @@ tooltip label {
   color: @rosewater;
 }
 
-#custom-theme_toggle {
-  padding-right: 0.8rem;
-}
-
 #custom-theme_toggle.dark {
   color: @mauve;
 }
@@ -81,13 +77,14 @@ tooltip label {
   color: @surface2;
 }
 #custom-theme_toggle {
-  border-radius: 1rem 0px 0px 1rem;
+  padding-left: 0.8rem;
+  border-radius: 0px 1rem 1rem 0px;
   background-color: @surface0;
 }
 #clock {
-  border-radius: 0px 1rem 1rem 0px;
   background-color: @surface0;
-  padding-left: 0px;
+  border-radius: 1rem 0px 0px 1rem;
+  padding-right: 0px;
   color: @text;
 }
 #idle_inhibitor {
