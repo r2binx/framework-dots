@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CHROMIUM_CONF=~/.config/chromium-flags.conf
+CHROMIUM_CONF=~/.config/chrome-flags.conf
 
 set_bat_theme() {
     themes=("Catppuccin-frappe" "Catppuccin-mocha")
@@ -249,12 +249,12 @@ wofi_colors() {
     cp ~/.config/wofi/${selected} ~/.config/wofi/colors
 }
 
-chromium_light() {
+chrome_light() {
     sed -i "/^--force-dark-mode/d" $CHROMIUM_CONF
     sed -i "/^--enable-features=WebUIDarkMode/d" $CHROMIUM_CONF
 }
 
-chromium_dark() {
+chrome_dark() {
     echo "--enable-features=WebUIDarkMode" >>$CHROMIUM_CONF
     echo "--force-dark-mode" >>$CHROMIUM_CONF
 }
@@ -312,7 +312,7 @@ if [ "$1" = "light" ]; then
     set_zathura_theme light
     set_xresources_theme light
     set_gtk_settings light
-    #chromium_light
+    chrome_light
     #set_adw_ff_theme light
     wofi_colors light
     set_btop_theme light
@@ -333,7 +333,7 @@ elif [ "$1" = "dark" ]; then
     set_xresources_theme dark
     set_zathura_theme dark
     set_gtk_settings dark
-    #chromium_dark
+    chrome_dark
     #set_adw_ff_theme dark
     wofi_colors dark
     set_nvim_cat_flavour dark
