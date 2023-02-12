@@ -103,7 +103,7 @@
     "tooltip": true,
     "locale": "de_DE.UTF-8",
     "timezone": "Europe/Berlin",
-    "tooltip-format": "{:%A, %d %b %Y}\n\n<span size='12pt' font='Comic Code Ligatures'>{calendar}</span>",
+    "tooltip-format": "<span size='12pt' font='Comic Code Ligatures'>{:%A, %d %b %Y}\n\n{calendar}</span>",
     "format-calendar": "<span><b>{}</b></span>",
     "format-calendar-weekdays": "<span foreground='#B5E8E0'><b>{}</b></span>",
     "format-calendar-weeks": "<span foreground='#DDB6F2'><b>{:%V}</b></span>",
