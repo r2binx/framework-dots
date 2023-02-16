@@ -307,12 +307,12 @@ for_window [title = "Picture-in-Picture"] floating enable, resize set width 670 
 for_window [app_id = "flameshot"] floating enable
 for_window [title = "Firefox - Choose User Profile" ] floating enable
 for_window [app_id="toolbox"]                    floating enable
-for_window [app_id="page-info"]                  floating enable	
+for_window [app_id="page-info"]                  floating enable
 for_window [app_id="webconsole"]                 floating enable
 for_window [app_id="termfloat"]                  floating enable
 for_window [app_id="termfloat"]                  resize set height 540
 for_window [app_id="termfloat"]                  resize set width 960
-for_window [app_id="mpv"]                        floating enable 
+for_window [app_id="mpv"]                        floating enable
 for_window [app_id="mpv"]                        resize set height 540
 for_window [app_id="mpv"]                        resize set width 960
 for_window [app_id="Nautilus"]                   floating enable 
@@ -322,6 +322,7 @@ for_window [app_id="syncthingtray"]              floating enable, sticky enable
 for_window [app_id="syncthingtray"]              opacity 0.95 
 for_window [app_id="syncthingtray"]              resize set width 400 px height 350 px
 for_window [app_id="syncthingtray"]              move absolute position 1200 px 64 px
+for_window [title="Remmina Remote Desktop Client"] floating enable, resize set height 800, resize set width 750
 
 # Prevent chrome from inhibiting sway shortcuts
 for_window [app_id="chrome-*"] shortcuts_inhibitor disable
