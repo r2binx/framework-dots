@@ -3,8 +3,16 @@
 [[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
 
 alias ds="doas "
+{{- if eq .chezmoi.osRelease.id "fedora" }}
+alias sudo="doas "
+alias inst="doas dnf install"
+alias updnf="doas dnf update --refresh"
+{{- else if eq .chezmoi.osRelease.id "arch" }}
 alias dse="doas rvim"
 alias sudoedit="doas rvim"
+alias hx="helix"
+alias inst="paru -S"
+{{- end }}
 alias igt="intel_gpu_top"
 alias df="df -hT --total"
 alias hh="cd ~"
@@ -13,7 +21,6 @@ alias sdn="doas shutdown now"
 alias grep="grep --color=auto"
 alias se="doas $EDITOR"
 alias e="$EDITOR"
-alias hx="helix"
 alias neovide="env -u WAYLAND_DISPLAY neovide"
 alias d="kitty +kitten diff"
 alias dots="dotbare"
@@ -41,7 +48,6 @@ alias qr='qrencode -m 2 -t utf8 <<< "$1"'
 alias tree="lsd --tree"
 alias exag="exa -la --color always --group-directories-first --icons --git"
 alias upgrade="~/.config/scripts/updatekitten.sh"
-alias inst="yay -S"
 alias gpgdec='echo "$(wl-paste)" | gpg -d'
 alias wttr='curl https://wttr.in/Filderstadt'
 alias open='xdg-open '
