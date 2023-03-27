@@ -140,10 +140,16 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
 	esac'
 
 # load plugins
+# Starshio prompt
+zinit ice as"command" from"gh-r" \
+    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
+    atpull"%atclone" src"init.zsh"
+zinit light starship/starship
+
 # Install fzf
 zinit pack"bgn-binary+keys" for fzf
 
-zinit wait"1" lucid from"gh-r" nocompile pick"/dev/null" for \
+zinit wait"1" lucid from"gh-r" light-mode nocompile pick"/dev/null" for \
     atclone"cp -vf **/fd.1 $ZPFX/man/man1/fd.1;
             cp -vf **/autocomplete/_fd _fd" \
     atpull"%atclone" \
@@ -159,13 +165,7 @@ zinit wait"1" lucid from"gh-r" nocompile pick"/dev/null" for \
     atpull"%atclone" \
     sbin"bin/exa* -> exa"  ogham/exa
 
-# Setup nice LS_COLORS for exa/ls/zsh
-zinit ice lucid wait atclone"dircolors -b LS_COLORS > clrs.zsh" \
-    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
-    atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"'
-zinit light trapd00r/LS_COLORS
-
-zinit lucid wait is-snippet for \
+zinit wait lucid is-snippet for \
     $HOME/.config/zsh/plugins/get-fzf-theme/get-fzf-theme.plugin.zsh \
     OMZP::sudo \
     OMZP::fancy-ctrl-z
@@ -175,19 +175,19 @@ export FZF_COMPLETION_TRIGGER=''
 bindkey '^T' fzf-file-widget
 bindkey '^I' expand-or-complete
 
-zinit ice as"command" from"gh-r" \
-    atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
-    atpull"%atclone" src"init.zsh"
-zinit light starship/starship
+zinit wait"1" lucid light-mode for \
+        sbin"bin/git-fuzzy" bigH/git-fuzzy \
+        sbin"bin/asdf" @asdf-vm/asdf
 
-zinit ice lucid wait
-zinit light asdf-vm/asdf
-
-zinit lucid wait light-mode for \
-    atinit"zicompinit; zicdreplay" \
+zinit wait lucid light-mode for \
+    atclone"dircolors -b LS_COLORS > clrs.zsh" \
+    atpull'%atclone' pick"clrs.zsh" nocompile'!' \
+    atload'zstyle ":completion:*" list-colors "${(s.:.)LS_COLORS}"' \
+        trapd00r/LS_COLORS \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
         Aloxaf/fzf-tab \
         zdharma-continuum/fast-syntax-highlighting \
-    atload"_zsh_autosuggest_start" \
+    atload"!_zsh_autosuggest_start" \
         zsh-users/zsh-autosuggestions \
     blockf atpull"zinit creinstall -q ." \
         zsh-users/zsh-completions \

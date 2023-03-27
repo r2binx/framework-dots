@@ -28,6 +28,7 @@ wk.register({
   ["<leader>e"] = { "<Plug>(easymotion-prefix)", "EasyMotion prefix", noremap = true },
   ["<leader>ef"] = { "<Plug>(easymotion-s)", "EasyMotion anywhere", noremap = true },
   ["<leader>ec"] = { "<Plug>(easymotion-f)", "EasyMotion to char forward", noremap = true },
+  ["<leader>es"] = { "<Plug>(easymotion-s2)", "EasyMotion to 2 char forward", noremap = true },
 })
 
 -- CamelCaseMotion

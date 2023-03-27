@@ -9,7 +9,7 @@ main=$(kitty @ launch \
         --type=os-window \
         --os-window-class=updatekitten \
         --title='System Update' \
-        zsh -c "echo 'Looking for system updates\n\n'; yay; $info_done") \
+        zsh -c "echo 'Looking for system updates\n\n'; paru; $info_done") \
         && kitty @ launch -m id:$main \
         --type=window \
         --title='Flatpak Update' \

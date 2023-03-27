@@ -8,6 +8,7 @@
 {{- end }}
 {{- if not .sway_conf }}
 .config/sway
+.config/swaync
 .config/wofi
 .config/mako
 .config/waybar

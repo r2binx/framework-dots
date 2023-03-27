@@ -40,7 +40,9 @@ bar {
 
 bindsym $mod+o bar mode toggle
 
-exec_always "pkill mako; mako"
+exec_always launch_swaync.sh
+bindsym $mod+Shift+n exec swaync-client -t -sw
+
 exec_always "pkill kanshi; kanshi"
 
 #exec_always nm-applet --indicator &

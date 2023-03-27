@@ -51,6 +51,7 @@ alias logs="find /var/log -type f -exec file {} \; | grep 'text' | cut -d' ' -f1
 alias myip="curl ifconfig.co"
 alias cal="cal -m -w"
 alias lg="lazygit"
+alias gf="git-fuzzy"
 
 # nushell as calculator
 alias calc='noglob zcalc'

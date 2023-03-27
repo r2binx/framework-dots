@@ -46,7 +46,7 @@ tooltip label {
 #custom-launcher {
   color: @blue;
 }
-#scratchpad, #mode, #clock, #tray, #memory, #temperature,#cpu,#mpd, #idle_inhibitor, #backlight, #pulseaudio, #bluetooth, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-launcher, #custom-theme_toggle {
+#scratchpad, #mode, #clock, #tray, #memory, #temperature,#cpu,#mpd, #idle_inhibitor, #backlight, #pulseaudio, #bluetooth, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-launcher, #custom-theme_toggle, #custom-notification {
   padding: 0.4rem 1rem;
   margin: 5px 0;
 }
@@ -104,9 +104,16 @@ tooltip label {
   background-color: @surface0;
   color: @peach;
 }
+
+#custom-notification {
+  background-color: @base;
+  /* padding-right: 0.5rem; */
+  color: @subtext0;
+}
+
 #pulseaudio {
-  background-color: @surface0;
   border-radius: 1rem 0px 0px 1rem;
+  background-color: @surface0;
   color: @flamingo;
 }
 
