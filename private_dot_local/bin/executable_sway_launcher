@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 set -euo pipefail
 
 # Export all variables
@@ -7,12 +7,11 @@ set -a
 #source /dev/fd/0 <<EOF
 #$(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
 #EOF
-[[ -f $HOME/.config/sway/env ]] && . $HOME/.config/sway/env
-[[ -f $HOME/.zshenv ]] && . $HOME/.zshenv
-[[ -f $ZDOTDIR/.zlogin ]] && . $ZDOTDIR/.zlogin
+[[ -f "${HOME}/.config/sway/env" ]] && . "${HOME}/.config/sway/env"
+[[ -f "${HOME}/.zshenv" ]] && . "${HOME}/.zshenv"
+[[ -f "${ZDOTDIR}/.zlogin" ]] && . "${ZDOTDIR}/.zlogin"
 set +a
 
-echo "Launching sway\n"
+printf "Launching sway\n"
 exec systemd-cat --identifier=sway /usr/bin/sway
 #exec /usr/bin/sway
-
