@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = jetbrains-toolbox
+Target = opt/jetbrains-toolbox/jetbrains-toolbox
+
+[Action]
+Description = Copy to local user directory because jetbrains
+When = PostTransaction
+Exec = /usr/bin/sh -c "cp /opt/jetbrains-toolbox/jetbrains-toolbox {{ .chezmoi.homeDir }}/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox"

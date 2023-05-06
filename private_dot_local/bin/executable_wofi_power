@@ -3,7 +3,7 @@
 
 dir="${HOME}/.config/wofi"
 
-entries=("  Lock" "  Logout" "鈴  Suspend" "  Hibernate" "勒  Reboot" "⏻  Shutdown")
+entries=("  Lock" "󰍃  Logout" "󰒲  Suspend" "  Hibernate" "  Reboot" "⏻  Shutdown")
 
 selected=$(printf '%s\n' "${entries[@]}" | wofi -d -p "Power Menu" -c "${dir}/wofi_dmenu.conf" -W 240 -L 8 | awk '{print tolower($2)}')
 

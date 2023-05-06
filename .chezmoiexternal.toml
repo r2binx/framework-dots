@@ -1,22 +1,22 @@
 ["Documents/Template/latex"]
-    type = "archive"
-    url = "https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.1.0/Eisvogel-2.1.0.tar.gz"
-    exact = true
-    checksum.sha256 = "c3b41058ca2f45d933cf773b19780db03fc547c9bf2d32372a2616667336f18d"
-    include = ["eisvogel.latex", "icon.png"]
+type = "archive"
+url = "https://github.com/Wandmalfarbe/pandoc-latex-template/releases/download/v2.1.0/Eisvogel-2.1.0.tar.gz"
+exact = true
+checksum.sha256 = "c3b41058ca2f45d933cf773b19780db03fc547c9bf2d32372a2616667336f18d"
+include = ["eisvogel.latex", "icon.png"]
 ["Documents/Template/latex/briefvorlage"]
-    type = "archive"
-    url = "https://github.com/PanCakeConnaisseur/latex-briefvorlage-din-5008/archive/master.tar.gz"
-    exact = true
-    stripComponents = 1
-    refreshPeriod = "168h"
-    exclude = ["*/Beispiele/**"]
+type = "archive"
+url = "https://github.com/PanCakeConnaisseur/latex-briefvorlage-din-5008/archive/master.tar.gz"
+exact = true
+stripComponents = 1
+refreshPeriod = "168h"
+exclude = ["*/Beispiele/**"]
 [".local/bin/lscolors.sh"]
-    type = "file"
-    url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh"
-    refreshPeriod = "168h"
-    executable = true
+type = "file"
+url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh"
+refreshPeriod = "168h"
+executable = true
 [".local/share/themes"]
-    type = "archive"
-    exact = false
-    url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.3/adw-gtk3v4-3.tar.xz"
+type = "archive"
+exact = false
+url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.5/adw-gtk3v4-5.tar.xz"

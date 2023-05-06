@@ -87,7 +87,8 @@ zstyle ':completion:*:descriptions' format '[%d]'
 
 # preview
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
-zstyle ':fzf-tab:complete:*:*' fzf-flags --height=70% --min-height=20 --preview-window 'right,60%,wrap,<30(down,wrap,70%)'
+# zstyle ':fzf-tab:complete:*:*' fzf-flags --height=70% --min-height=20 --preview-window 'right,60%,wrap,<36(down,wrap,70%)'
+zstyle ':fzf-tab:complete:*:*' fzf-flags --height=80% --min-height=20 --preview-window 'right,60%,wrap,cycle,<36(down,80%,wrap,cycle)' --bind 'ctrl-/:change-preview-window(down,40%,wrap,cycle|)'
 zstyle ':fzf-tab:complete:*:options' fzf-preview
 zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
 
