@@ -19,4 +19,4 @@ executable = true
 [".local/share/themes"]
 type = "archive"
 exact = false
-url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.5/adw-gtk3v4-5.tar.xz"
+url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.6/adw-gtk3v4-6.tar.xz"
