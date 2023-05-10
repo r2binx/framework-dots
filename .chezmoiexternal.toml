@@ -20,3 +20,10 @@ executable = true
 type = "archive"
 exact = false
 url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.6/adw-gtk3v4-6.tar.xz"
+[".fleet/themes"]
+type = "archive"
+exact = false
+refreshPeriod = "744h"
+stripComponents = 2
+include = ["*/themes/**"]
+url = "https://github.com/kkrypt0nn/jetbrains-fleet/archive/refs/heads/main.zip"

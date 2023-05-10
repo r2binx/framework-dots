@@ -127,8 +127,11 @@ set_nvim_cat_flavour() {
 		return
 		;;
 	esac
+
 	for SOCK in "${XDG_RUNTIME_DIR}"/nvim.*; do
-		nvim --server "${SOCK}" --remote-send "<CMD>:Catppuccin ${selected}<CR>" >/dev/null
+		if [ -f "${SOCK}" ]; then
+			nvim --server "${SOCK}" --remote-send "<CMD>:Catppuccin ${selected}<CR>" >/dev/null
+		fi
 	done
 
 	sed -i "/flavour/c\ \ \ \ flavour = \"${selected}\"," ~/.config/nvim/lua/user/plugins/catppuccin.lua
