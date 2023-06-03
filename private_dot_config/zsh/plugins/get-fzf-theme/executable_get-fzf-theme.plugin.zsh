@@ -1,7 +1,9 @@
 function get-fzf-theme() {
-    [ -f /tmp/theme ] && read theme < /tmp/theme || theme=$(gsettings get org.gnome.desktop.interface color-scheme)
+    [ -f /tmp/theme ] && read -r theme </tmp/theme || theme=$([ "$(gsettings get org.gnome.desktop.interface color-scheme)" = "'default'" ] && echo "light" || echo "dark")
     local -a color
-    if [ $theme = "'default'" ] || [ $theme = "light" ]; then
+    if [ $theme = "light" ]; then
+        # Latte 
+        # color="--color=bg+:#ccd0da,bg:#eff1f5,spinner:#dc8a78,hl:#d20f39,fg:#4c4f69,header:#d20f39,info:#8839ef,pointer:#dc8a78,marker:#dc8a78,fg+:#4c4f69,prompt:#8839ef,hl+:#d20f39"     
         # Frappe
         color="--color=bg+:#414559,bg:#303446,spinner:#f2d5cf,hl:#e78284,fg:#c6d0f5,header:#e78284,info:#ca9ee6,pointer:#f2d5cf,marker:#f2d5cf,fg+:#c6d0f5,prompt:#ca9ee6,hl+:#e78284"
 

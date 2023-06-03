@@ -49,8 +49,8 @@ autoload-dir $ZDOTDIR/functions
 setopt globdots
 
 ## less color/highlight
-export LESSOPEN="|${HOME}/.config/lessfilter %s"
-export LESS='-R '
+export LESSOPEN="| ${HOME}/.config/lessfilter %s"
+export LESS='-giR +g '
 
 ## fzf
 export FZF_DEFAULT_COMMAND="fd --one-file-system --strip-cwd-prefix --follow --hidden --exclude '.git' --exclude 'node_modules' --exclude '.var'"
@@ -71,7 +71,7 @@ export FZF_CTRL_T_OPTS="$FZF_DEFAULT_OPTS --preview 'less {}' --preview-window '
 export _ZO_FZF_OPTS="$FZF_DEFAULT_OPTS --preview 'lsd -LAl --color=always --blocks=permission,user,size,date,name -1 {2..}' --preview-window=down:wrap"
 export _ZO_ECHO=0
 
-export USE_PISTOL=1
+# export USE_PISTOL=1
 
 ###
 # fzf-tab
@@ -87,8 +87,8 @@ zstyle ':completion:*:descriptions' format '[%d]'
 
 # preview
 zstyle ':fzf-tab:complete:*:*' fzf-preview 'less ${(Q)realpath}'
-# zstyle ':fzf-tab:complete:*:*' fzf-flags --height=70% --min-height=20 --preview-window 'right,60%,wrap,<36(down,wrap,70%)'
-zstyle ':fzf-tab:complete:*:*' fzf-flags --height=80% --min-height=20 --preview-window 'right,60%,wrap,cycle,<36(down,80%,wrap,cycle)' --bind 'ctrl-/:change-preview-window(down,40%,wrap,cycle|)'
+zstyle ':fzf-tab:complete:*:*' fzf-flags --height=70% --min-height=20 --preview-window 'right,60%,wrap,<36(down,wrap,70%)'
+# zstyle ':fzf-tab:complete:*:*' fzf-flags --height=80% --min-height=20 --preview-window 'right,60%,wrap,<36(down,80%,wrap,cycle)' --bind 'ctrl-/:change-preview-window(down,40%,wrap,cycle|)'
 zstyle ':fzf-tab:complete:*:options' fzf-preview
 zstyle ':fzf-tab:complete:*:argument-1' fzf-preview
 

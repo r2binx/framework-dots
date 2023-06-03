@@ -244,7 +244,10 @@ mouse_warping none
     bindsym $mod+b focus mode_toggle
 
     # Move focus to the parent container
-    bindsym $mod+a focus parent
+    bindsym $mod+p focus parent
+
+    # Move focus to the child container
+    bindsym $mod+c focus child
 
 #------------------------------#
 # Always float certain windows #
@@ -273,7 +276,7 @@ for_window [window_role = "About"] floating enable
 for_window [title = "Firefox - Sharing Indicator"] kill
 for_window [title = "Firefox — Sharing Indicator"] kill
 # Some websites trigger floating mode with this rule
-#for_window [app_id="firefox" title="Library"] floating enable, border pixel 1, sticky enable
+#for_window [app_id="firefox" title="Library"] floating enable, border pixel 2, sticky enable
 for_window [app_id = "pavucontrol"] floating enable
 #for_window [title = "Thunderbird Preferences"] floating enable
 #for_window [title = "*Reminder"] floating enable
@@ -296,12 +299,12 @@ for_window [app_id="(?i)Thunderbird" title=".*Reminder"] floating enable
 for_window [class = "ATLauncher"] floating enable
 for_window [instance="lxappearance"] floating enable
 for_window [app_id="pamac-manager"] floating enable
-for_window [title="File Operation Progress"] floating enable, border pixel 1, sticky enable, resize set width 40 ppt height 30 ppt
+for_window [title="File Operation Progress"] floating enable, border pixel 2, sticky enable, resize set width 40 ppt height 30 ppt
 #for_window [title="nmtui"] floating enable
 for_window [title="Save File"] floating enable
 for_window [app_id="wdisplays"] floating enable
-for_window [app_id="floating_shell_portrait"] floating enable, border pixel 1, sticky enable, resize set width 30 ppt height 40 ppt
-for_window [app_id="floating_shell"] floating enable, border pixel 1, sticky enable
+for_window [app_id="floating_shell_portrait"] floating enable, border pixel 2, sticky enable, resize set width 30 ppt height 40 ppt
+for_window [app_id="floating_shell"] floating enable, border pixel 2, sticky enable
 for_window [app_id = "qt5ct"] floating enable
 for_window [app_id = "gnome-tweaks"] floating enable
 for_window [class = "Bluetooth-sendto" instance = "bluetooth-sendto"] floating enable
@@ -321,11 +324,13 @@ for_window [app_id="mpv"]                        resize set width 960
 for_window [app_id="Nautilus"]                   floating enable 
 for_window [app_id="Nautilus"]                   resize set height 540
 for_window [app_id="Nautilus"]                   resize set width 960
+for_window [app_id="Nautilus"]                   border pixel 2
 for_window [app_id="syncthingtray"]              floating enable, sticky enable
 for_window [app_id="syncthingtray"]              opacity 0.95 
 for_window [app_id="syncthingtray"]              resize set width 400 px height 350 px
 for_window [app_id="syncthingtray"]              move absolute position 1200 px 64 px
 for_window [title="Remmina Remote Desktop Client"] floating enable, resize set height 800, resize set width 750
+for_window [app_id="re.sonny.Junction"]         floating enable
 
 # Prevent chrome from inhibiting sway shortcuts
 for_window [app_id="chrome-*"] shortcuts_inhibitor disable
@@ -449,6 +454,7 @@ input "type:touchpad" {
 input "type:pointer" {
     scroll_button 274
     scroll_method on_button_down
+    accel_profile adaptive
 }
 
 input "type:keyboard" {

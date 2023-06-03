@@ -18,32 +18,37 @@
   padding: 0.5rem;
   margin: 0.5rem;
 }
+.control-center .notification-row:focus,
+.control-center .notification-row:hover {
+  opacity: 1;
+  background: transparent;
+}
 
-.notification-row:focus,
-.notification-row:hover {
+.notification-row:focus .notification,
+.notification-row:hover .notification {
+  border: 2px solid @lavender;
   background: @surface0;
 }
 
 .notification {
   border-radius: 12px;
-  margin: 5px;
   box-shadow: none;
   /* box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.7), */
-    /* 0 2px 6px 2px rgba(0, 0, 0, 0.3); */
-  padding: 0;
+  /* 0 2px 6px 2px rgba(0, 0, 0, 0.3); */
+  margin: 6px;
 }
 
 /* Uncomment to enable specific urgency colors */
 .low {
-  border: 1px solid @overlay0;
+  border: 2px solid @overlay0;
 }
 
 .normal {
-  border: 1px solid @overlay2;
+  border: 2px solid @overlay2;
 }
 
 .critical {
-  border: 1px solid @peach;
+  border: 2px solid @peach;
 }
 
 .notification-content {
@@ -152,14 +157,13 @@
 
 .control-center {
   background: @base;
-  box-shadow: 0px 0px 5px 0 #0F0F0F;
+  box-shadow: 0px 0px 5px 0 #0f0f0f;
   border-radius: 12px;
   margin: 3px;
   padding: 1rem;
 }
 
 .control-center-list {
-  background: @crust;
   border-radius: 12px;
   margin: 0 0.5rem;
   padding: 0.5rem;
@@ -175,7 +179,7 @@
 
 /* Window behind control center and on all other monitors */
 .blank-window {
-/* background: alpha(black, 0.25); */
+  /* background: alpha(black, 0.25); */
   background: transparent;
 }
 
@@ -234,12 +238,11 @@
 /* Mpris widget */
 .widget-mpris {
   /* The parent to all players */
-  background-color: @crust;
   color: @text;
-  border-radius: 12px;
-  margin: 0.5rem;
+  margin: 8px;
 }
 .widget-mpris button {
+  margin: 8px 0;
   background: @surface0;
   color: @overlay2;
 }
@@ -247,8 +250,13 @@
   background: @lavender;
   color: @surface0;
 }
+.widget-mpris-player button {
+  margin: 1rem 0;
+}
 .widget-mpris-player {
-  padding: 8px;
+  background-color: @crust;
+  color: @text;
+  border-radius: 12px;
   margin: 8px;
 }
 .widget-mpris-title {
@@ -269,19 +277,19 @@
   background-color: @crust;
 }
 
-.widget-buttons-grid>flowbox>flowboxchild>button{
+.widget-buttons-grid > flowbox > flowboxchild > button {
   background: @surface0;
   color: @overlay2;
   border-radius: 12px;
 }
 
-.widget-buttons-grid>flowbox>flowboxchild>button:hover {
+.widget-buttons-grid > flowbox > flowboxchild > button:hover {
   background: @lavender;
   color: @surface0;
 }
 
 /* Menubar widget */
-.widget-menubar>box>.menu-button-bar>button {
+.widget-menubar > box > .menu-button-bar > button {
   color: @text;
   border: none;
   background: transparent;
@@ -303,7 +311,8 @@
   background-color: @noti-bg-hover;
 } */
 
-.topbar-buttons>button { /* Name defined in config after # */
+.topbar-buttons > button {
+  /* Name defined in config after # */
   border: none;
   background: transparent;
 }
