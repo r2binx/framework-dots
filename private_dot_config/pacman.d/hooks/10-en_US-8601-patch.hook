@@ -1,0 +1,11 @@
+[Trigger]
+Type = Package
+Operation = Install
+Operation = Upgrade
+Target = glibc
+Target = usr/share/i18n/locales/*
+
+[Action]
+Description = Substitute LC_TIME from en_DK (ISO 8601)
+When = PostTransaction
+Exec = /bin/sh -c "/usr/bin/8601-en_US-patch.sh && /usr/bin/locale-gen"
