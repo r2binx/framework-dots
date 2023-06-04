@@ -6,7 +6,7 @@
 # echo ". ~/.config/zsh/.zshenv" > ~/.zshenv
 #
 export TZ="Europe/Berlin"
-export LANGUAGE="en_US:en:C:de_DE"
+export LANGUAGE="en_US:en:C"
 
 export ZDOTDIR=${ZDOTDIR:-~/.config/zsh}
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
