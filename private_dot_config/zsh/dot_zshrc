@@ -50,7 +50,7 @@ setopt globdots
 
 ## less color/highlight
 export LESSOPEN="| ${HOME}/.config/lessfilter %s"
-export LESS='-giR +g '
+export LESS='-cgiRF'
 
 ## fzf
 export FZF_DEFAULT_COMMAND="fd --one-file-system --strip-cwd-prefix --follow --hidden --exclude '.git' --exclude 'node_modules' --exclude '.var'"
@@ -141,7 +141,7 @@ zstyle ':fzf-tab:complete:git-checkout:*' fzf-preview \
 	esac'
 
 # load plugins
-# Starshio prompt
+# Starship prompt
 zinit ice as"command" from"gh-r" \
     atclone"./starship init zsh > init.zsh; ./starship completions zsh > _starship" \
     atpull"%atclone" src"init.zsh"
@@ -170,6 +170,8 @@ zinit wait lucid is-snippet for \
     $HOME/.config/zsh/plugins/get-fzf-theme/get-fzf-theme.plugin.zsh \
     OMZP::sudo \
     OMZP::fancy-ctrl-z
+
+zinit for as'completion' nocompile is-snippet $HOME/.config/zsh/plugins/poetry/_poetry
 
 # CTRL-T for dedicated context completion
 export FZF_COMPLETION_TRIGGER=''

@@ -44,7 +44,7 @@ require('lsp-setup').setup({
                 },
             }
         },
-        sumneko_lua = {
+        lua_ls = {
             settings = {
                 Lua = {
                     format = {
@@ -85,8 +85,8 @@ require('lsp-setup').setup({
         --         }
         --     }
         -- },
-        clangd = require('lsp-setup.clangd_extensions').setup({}),
-        rust_analyzer = require('lsp-setup.rust-tools').setup({
+        clangd = require('clangd_extensions').prepare({}),
+        rust_analyzer = require('rust-tools').setup({
             server = {
                 settings = {
                     ['rust-analyzer'] = {
