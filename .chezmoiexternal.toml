@@ -19,7 +19,7 @@ executable = true
 [".local/share/themes"]
 type = "archive"
 exact = false
-url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.7/adw-gtk3v4-7.tar.xz"
+url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.8/adw-gtk3v4-8.tar.xz"
 [".fleet/themes"]
 type = "archive"
 exact = false

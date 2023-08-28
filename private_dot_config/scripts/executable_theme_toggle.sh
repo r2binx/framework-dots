@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 CHROMIUM_CONF=~/.config/chrome-flags.conf
 

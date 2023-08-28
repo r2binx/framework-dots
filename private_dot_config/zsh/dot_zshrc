@@ -168,10 +168,14 @@ zinit wait"1" lucid from"gh-r" light-mode nocompile pick"/dev/null" for \
 
 zinit wait lucid is-snippet for \
     $HOME/.config/zsh/plugins/get-fzf-theme/get-fzf-theme.plugin.zsh \
+    $HOME/.config/zsh/plugins/fzf-flatpak/fzf-flatpak-widget.plugin.zsh \
     OMZP::sudo \
     OMZP::fancy-ctrl-z
 
-zinit for as'completion' nocompile is-snippet $HOME/.config/zsh/plugins/poetry/_poetry
+zinit light-mode as'completion' is-snippet for \
+    $HOME/.config/zsh/completions/_poetry \
+    $HOME/.config/zsh/completions/_pdm
+
 
 # CTRL-T for dedicated context completion
 export FZF_COMPLETION_TRIGGER=''

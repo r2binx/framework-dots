@@ -1,0 +1,79 @@
+#!/bin/sh
+
+has_cmd() {
+	command -v "$1" >/dev/null 2>&1
+}
+
+if has_cmd flatpak; then
+	flatpak install -y \
+		org.gtk.Gtk3theme.adw-gtk3 \
+		org.gtk.Gtk3theme.adw-gtk3-dark \
+		com.github.tchx84.Flatseal \
+		dev.alextren.Spot
+fi
+
+if ! has_cmd asdf; then
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.12.0
+	. "$HOME/.bash_profile"
+	asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git &&
+		node_lts="$(asdf list-all nodejs | grep "^18" | tail -1)" &&
+		asdf install nodejs "$node_lts" &&
+		asdf global nodejs "$node_lts"
+	asdf plugin add starship https://github.com/grimoh/asdf-starship.git &&
+		asdf install starship latest &&
+		asdf global starship latest
+	asdf plugin add poetry https://github.com/asdf-community/asdf-poetry.git &&
+		asdf install poetry latest &&
+		asdf global poetry latest
+fi
+
+{{- if eq .chezmoi.osRelease.id "arch" }}
+
+{{- if .sway_conf }}
+sudo pacman -Syu --noconfirm sway waybar swayidle wofi
+{{- end }}
+
+sudo pacman -Syu --noconfirm \
+	kitty \
+	fish \
+	fisher \
+	starship \
+	fzf \
+	fd \
+	zoxide \
+	ripgrep \
+	exa \
+	lsd \
+	lazygit \
+	nnn \
+	neovim \
+	neovide \
+	htop \
+	rustup \
+	btop \
+	nload
+
+{{- else if eq .chezmoi.osRelease.id "fedora" }}
+sudo dnf upgrade --refresh -y &&
+	sudo dnf install -y \
+		kitty \
+		fish \
+		fzf \
+		fd-find \
+		zoxide \
+		ripgrep \
+		exa \
+		lsd \
+		nnn \
+		neovim \
+		btop \
+		htop \
+		nload
+
+curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher
+
+{{- end }}
+
+fish -c "fisher install PatrickF1/fzf.fish && fisher install kidonng/zoxide.fish"
+
+# vim:ft=sh

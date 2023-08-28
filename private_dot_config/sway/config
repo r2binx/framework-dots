@@ -72,14 +72,14 @@ set $laptop eDP-1
 #bindswitch lid:off output $laptop enable
 
 xwayland enable
-#exec_always 'xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1'
+# exec_always 'xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 1'
 output $laptop {
     # Custom modeline for virtual resultion with clean 2x scaling (for xwayland)
     # modeline 453.250  3240 3288 3320 3400  2160 2163 2173 2222  +HSync -VSync
     mode 2256x1504@60Hz
     pos 0,0
     scale 1.5
-    scale_filter nearest
+    scale_filter smart
     subpixel rgb
 }
 
@@ -438,7 +438,7 @@ default_border pixel 2
 smart_borders on
 
 
-input "type:touchpad" {
+input type:touchpad {
     dwt enabled
     tap enabled
     drag enabled
@@ -451,13 +451,13 @@ input "type:touchpad" {
     natural_scroll enabled
 }
 
-input "type:pointer" {
-    scroll_button 274
+input type:pointer {
+#    scroll_button "BTN_MIDDLE"
     scroll_method on_button_down
     accel_profile adaptive
 }
 
-input "type:keyboard" {
+input type:keyboard {
     xkb_layout us
     xkb_options caps:ctrl_modifier,compose:ralt,eurosign:5
 }

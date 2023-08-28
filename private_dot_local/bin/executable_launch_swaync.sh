@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 [ -f /tmp/theme ] && read -r theme </tmp/theme || theme=$([ "$(gsettings get org.gnome.desktop.interface color-scheme)" = "'default'" ] && echo "light" || echo "dark")
 
 is_swaync_ServerExist=$(pgrep -c -x "swaync")

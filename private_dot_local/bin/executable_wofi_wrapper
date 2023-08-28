@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 #[ -f /tmp/theme ] && read theme < /tmp/theme || theme=$([ $(gsettings get org.gnome.desktop.interface color-scheme) = "'default'" ] && echo "light" || echo "dark")
 
 dir="${HOME}/.config/wofi"
@@ -6,13 +6,13 @@ dir="${HOME}/.config/wofi"
 while getopts 'ldp' flag; do
 	case "${flag}" in
 	l)
-		wofi -p "Search" -W 600 -L 7 -a -c "${dir}/wofi_drun.conf"
+		wofi -p "Search" -W 600 -L 7 -a -c "${dir}/wofi_drun.conf" "${@:2}"
 		;;
 	d)
-		wofi -p "Networks" -W 600 -L 10 -c "${dir}/wofi_dmenu.conf"
+		wofi -p "Networks" -W 600 -L 10 -c "${dir}/wofi_dmenu.conf" "${@:2}"
 		;;
 	p)
-		wofi_power
+		wofi_power "${@:2}"
 		;;
 	*)
 		printf "$@"
