@@ -7,6 +7,7 @@ command = "nvim"
 [diff]
 exclude = ["externals"]
 command = "delta"
+args = ["--dark", "--paging=never", "{{`{{ .Target }}`}}", "{{`{{ .Destination }}`}}"]
 [merge]
 command = "nvim"
 args = ["-d", "{{`{{ .Destination }}`}}", "{{`{{ .Source }}`}}", "{{`{{ .Target }}`}}"]

@@ -123,7 +123,7 @@
     "format": "{:%H:%M}",
     "tooltip": true,
     "timezone": "Europe/Berlin",
-    "tooltip-format": "\n<span size='12pt' font='Comic Code Ligatures'><b>{:%A, %Y-%m-%d}</b>\n\n{calendar}</span>",
+    "tooltip-format": "<span size='12pt' font='Comic Code Ligatures'><b>{:%A, %Y-%m-%d}</b>\n\n{calendar}</span>",
     "smooth-scrolling-threshold": 6,
     "calendar": {
       "mode": "month",
