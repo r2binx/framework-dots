@@ -1,0 +1,24 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+
+# History
+export HISTTIMEFORMAT="[%F %T] "
+export HISTSIZE=10000
+export HISTCONTROL="ignoreboth:erasedups"
+
+shopt -s histappend
+
+. ~/.bash_aliases
+
+if [[ $(ps --no-header --pid=$PPID --format=comm) != "fish" && -z ${BASH_EXECUTION_STRING} ]]
+then
+	shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=''
+	exec fish $LOGIN_OPTION
+fi
+
+# vim:ft=bash
