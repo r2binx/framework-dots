@@ -1,5 +1,9 @@
 # only install pacman conf/hooks on arch
 .config/kitty/current-theme.conf
+.config/fish/**/fzf_configure_bindings.fish
+.config/fish/conf.d/fzf.fish
+.config/fish/conf.d/zoxide.fish
+.config/fish/functions/_*
 {{- if ne .chezmoi.osRelease.id "arch" }}
 .config/pacman
 .config/pacman.d
