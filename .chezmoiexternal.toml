@@ -16,10 +16,15 @@ type = "file"
 url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh"
 refreshPeriod = "168h"
 executable = true
+[".local/share/git-fuzzy"]
+type = "git-repo"
+url = "https://github.com/bigH/git-fuzzy.git"
+exact = true
+refreshPeriod = "744h"
 [".local/share/themes"]
 type = "archive"
 exact = false
-url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.8/adw-gtk3v4-8.tar.xz"
+url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v4.9/adw-gtk3v4-9.tar.xz"
 [".fleet/themes"]
 type = "archive"
 exact = false

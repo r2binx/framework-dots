@@ -10,7 +10,8 @@ declare -A ASDF_PLUGINS=(["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
 	["poetry"]="https://github.com/asdf-community/asdf-poetry.git")
 
 FISH_PLUGINS=("patrickf1/fzf.fish"
-	"kidonng/zoxide.fish")
+	"kidonng/zoxide.fish"
+	"jorgebucaran/autopair.fish")
 
 FLATPAKS=("org.gtk.Gtk3theme.adw-gtk3"
 	"org.gtk.Gtk3theme.adw-gtk3-dark"
@@ -37,9 +38,13 @@ COMMON_PACKAGES=("kitty"
 ARCH_PACKAGES=("fisher"
 	"fd"
 	"neovide"
-	"rustup")
+	"rustup"
+	"intel-gpu-tools"
+	"turbostat"
+	"cpupower")
 
-FEDORA_PACKAGES=("fd-find")
+FEDORA_PACKAGES=("fd-find"
+	"igt-gpu-tools")
 
 if has_cmd "flatpak"; then
 	existing_flatpaks=($(flatpak list --columns=application | tail -n +1))
@@ -73,6 +78,8 @@ asdf install poetry latest &&
 
 {{- if .sway_conf }}
 sudo pacman -Syu --noconfirm --needed sway waybar swayidle wofi
+# Wayland object leak fix not yet in repo (https://github.com/swaywm/swaylock/commit/10df946671a12b4c0f4c13d4556a8bae6fc30394)
+yay -S --needed --noconfirm swaylock-git
 {{- end }}
 
 sudo pacman -Syu --noconfirm --needed ${COMMON_PACKAGES[@]} ${ARCH_PACKAGES[@]}

@@ -1,6 +1,8 @@
 
 source ~/.bash_aliases
 
+set -gx SHELL (command --search fish)
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
     source ~/.asdf/asdf.fish
@@ -9,7 +11,7 @@ if status is-interactive
     set -gx LESS '-cgiRF'
 
     set fzf_fd_opts --one-file-system --strip-cwd-prefix --follow --hidden --exclude '.git' --exclude 'node_modules' --exclude '.var'
-    set -x fzf_preview_dir_cmd exa -a --icons -1
+    set -x fzf_preview_dir_cmd exa -a --group-directories-first --icons -1
     # set -x fzf_preview_dir_cmd 'lsd -LA --color=always -1'
     set fzf_diff_highlighter delta
 

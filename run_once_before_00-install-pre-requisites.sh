@@ -10,5 +10,5 @@ if [[ $ID == "arch" ]]; then
 	makepkg -si --noconfirm
 elif [[ $ID == "fedora" ]]; then
 	sudo dnf upgrade --refresh -y &&
-		sudo dnf install -y git curl util-linux
+		sudo dnf install -y git curl util-linux kernel-tools
 fi

@@ -2,7 +2,7 @@
 # aliases
 #
 
-# [[ "$TERM" == "xterm-kitty" ]] && alias ssh="kitty +kitten ssh"
+[ "$TERM" = "xterm-kitty" ] && alias ssh="kitty +kitten ssh"
 
 alias ds="doas "
 alias dse="doas rvim"
@@ -12,6 +12,7 @@ alias inst="paru -S"
 alias igt="intel_gpu_top"
 alias df="df -hT --total"
 alias hh="cd ~"
+alias cm="chezmoi"
 alias cdtmp="cd $(mktemp -d)"
 alias sdn="doas shutdown now"
 alias grep="grep --color=auto"
@@ -40,7 +41,6 @@ alias wguhome="doas systemctl start wg-quick@home"
 alias wgdhome="doas systemctl stop wg-quick@home"
 alias fpu="flatpak update"
 #alias man="batman --paging=always --color=always"
-# alias qr='qrencode -m 2 -t utf8 <<< "$1"'
 alias tree="lsd --tree"
 alias exag="exa -la --color always --group-directories-first --icons --git"
 alias upgrade="~/.config/scripts/updatekitten.sh"
