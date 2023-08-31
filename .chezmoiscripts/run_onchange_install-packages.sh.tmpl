@@ -46,6 +46,10 @@ ARCH_PACKAGES=("fisher"
 FEDORA_PACKAGES=("fd-find"
 	"igt-gpu-tools")
 
+if ! has_cmd "git-fuzzy"; then
+	ln -s ~/.local/share/git-fuzzy/bin/git-fuzzy ~/.local/bin/git-fuzzy
+fi
+
 if has_cmd "flatpak"; then
 	existing_flatpaks=($(flatpak list --columns=application | tail -n +1))
 	for app in ${FLATPAKS[@]}; do

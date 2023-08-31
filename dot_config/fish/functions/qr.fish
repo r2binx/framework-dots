@@ -8,7 +8,7 @@ function qr --description 'Generate qrcode for each argument or paste from clipb
     _genqr "$argv[1]"
   else if test (count $argv) -gt 1
     for s in $argv
-      _genqr "$s" 
+      _genqr "$s"
       printf "\n"
     end
   else
