@@ -16,7 +16,8 @@ FISH_PLUGINS=("patrickf1/fzf.fish"
 FLATPAKS=("org.gtk.Gtk3theme.adw-gtk3"
 	"org.gtk.Gtk3theme.adw-gtk3-dark"
 	"com.github.tchx84.Flatseal"
-	"dev.alextren.Spot")
+	"dev.alextren.Spot"
+	"net.werwolv.ImHex")
 
 COMMON_PACKAGES=("kitty"
 	"fish"
@@ -89,8 +90,13 @@ yay -S --needed --noconfirm swaylock-git
 sudo pacman -Syu --noconfirm --needed ${COMMON_PACKAGES[@]} ${ARCH_PACKAGES[@]}
 
 {{- else if eq .chezmoi.osRelease.id "fedora" }}
-sudo dnf copr enable atim/lazygit -y
-sudo dnf copr enable atim/starship -y
+
+for app in "lazygit" "starship"; do
+	if ! sudo dnf -C -q info $app >/dev/null 2>&1; then
+		sudo dnf copr enable atim/$app -y
+	fi
+done
+
 sudo dnf upgrade --refresh -y &&
 	sudo dnf install -y ${COMMON_PACKAGES[@]} ${FEDORA_PACKAGES[@]}
 
