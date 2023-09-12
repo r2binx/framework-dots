@@ -27,7 +27,7 @@ export ASDF_DIR="$HOME/.asdf"
 
 # . "$HOME/.asdf/asdf.sh"
 
-export PATH="$PNPM_HOME:$HOME/.local/bin:$HOME/.local/share/JetBrains/Toolbox/bin/scripts:$PATH"
+export PATH="$PNPM_HOME:$HOME/.local/bin:$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 
 [[ ${XDG_SESSION_TYPE} == "tty" ]] && return
 
