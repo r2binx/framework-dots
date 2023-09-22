@@ -1,0 +1,12 @@
+corepack
+pnpm
+yarn
+prettier
+eslint
+vite
+@vue/language-server
+@types/node
+neovim
+tree-sitter-cli
+typescript
+typescript-language-server
