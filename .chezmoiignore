@@ -1,13 +1,14 @@
-# only install pacman conf/hooks on arch
 .config/kitty/current-theme.conf
 .config/fish/**/fzf_configure_bindings.fish
 .config/fish/conf.d/fzf.fish
 .config/fish/conf.d/autopair.fish
 .config/fish/conf.d/zoxide.fish
 .config/fish/functions/_*
+**/.git
 .config/nvim
 !.config/nvim/lua/user
 {{- if ne .chezmoi.osRelease.id "arch" }}
+# only install pacman conf/hooks on arch
 .config/pacman
 .config/pacman.d
 .config/yay
