@@ -13,17 +13,24 @@ has_cmd() {
 
 if [ -d "$1" ]; then
 	lsd -LAl --color=always --blocks=permission,user,size,date,name -1 "$1"
+	exit 0
 elif [ "$category" = image ]; then
 	chafa "$1"
 	/usr/bin/vendor_perl/exiftool "$1"
+	exit 0
 elif [ "$kind" = vnd.openxmlformats-officedocument.spreadsheetml.sheet ] ||
 	[ "$kind" = vnd.ms-excel ]; then
 	in2csv "$1" | xsv table | bat -ltsv --color=always
-elif [ "$category" = text ] && has_cmd bat; then
-	[ -z "$FZF_PREVIEW_COLUMNS" ] && bat -n --wrap=never "$1" || bat --terminal-width $fzf_preview_width "$1"
+	exit 0
+elif [ "$category" = text ] || [ "$kind" = json ] && has_cmd bat; then
+	[ -z "$FZF_PREVIEW_COLUMNS" ] && bat --wrap=auto "$1" || bat --terminal-width="$fzf_preview_width" "$1"
+	exit 0
 	#bat --style="header,header-filename,header-filesize,changes,numbers" --terminal-width $FZF_PREVIEW_COLUMNS --color=always "$1"
 elif has_cmd lesspipe.sh; then
 	lesspipe.sh "$1"
+	exit 0
 else
 	echo $EXIT_UNHANDLED
 fi
+
+exit 1
