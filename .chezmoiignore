@@ -4,8 +4,7 @@
 .config/fish/conf.d/autopair.fish
 .config/fish/conf.d/zoxide.fish
 .config/fish/functions/_*
-**/.git
-.config/nvim
+*/**/.git
 !.config/nvim/lua/user
 {{- if ne .chezmoi.osRelease.id "arch" }}
 # only install pacman conf/hooks on arch
