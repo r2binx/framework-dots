@@ -5,6 +5,8 @@
 .config/fish/conf.d/autopair.fish
 .config/fish/conf.d/zoxide.fish
 .config/fish/functions/_*
+.config/nvim
+!.config/nvim/lua/user
 {{- if ne .chezmoi.osRelease.id "arch" }}
 .config/pacman
 .config/pacman.d
