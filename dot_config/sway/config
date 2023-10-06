@@ -530,7 +530,7 @@ bindgesture pinch:inward+left move left
 bindgesture pinch:inward+right move right
 
 # clipboard manager required, else clipboard gets cleared on window close
-exec_always wl-paste -t text --watch clipman store --no-persist
+exec wl-paste --watch cliphist store
 
 # use gnome polkit
 #exec /usr/lib/polkit-1/polkit-agent-helper-1
