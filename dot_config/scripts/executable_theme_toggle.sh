@@ -229,7 +229,7 @@ sway_cursor() {
 		;;
 	esac
 
-	echo "seat seat0 xcursor_theme ${selected}" >~/.config/sway/cursor.conf
+	echo "seat * xcursor_theme ${selected}" >~/.config/sway/cursor.conf
 }
 
 wofi_colors() {
