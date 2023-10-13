@@ -21,6 +21,7 @@ return {
       integrations = {
         indent_blankline = {
           enabled = true,
+          scope_color = "",
           colored_indent_levels = true,
         },
       },
@@ -30,16 +31,22 @@ return {
   {
     "lukas-reineke/indent-blankline.nvim",
     opts = {
-      show_current_context = true,
-      show_current_context_start = true,
-      show_first_indent_level = true,
-      char_highlight_list = {
-        "IndentBlanklineIndent1",
-        "IndentBlanklineIndent2",
-        "IndentBlanklineIndent3",
-        "IndentBlanklineIndent4",
-        "IndentBlanklineIndent5",
-        "IndentBlanklineIndent6",
+      scope = {
+        enabled = true,
+        show_start = true,
+        show_end = false,
+        highlight = { "Function", "Label" },
+      },
+      indent = {
+        highlight = {
+          "RainbowRed",
+          "RainbowYellow",
+          "RainbowBlue",
+          "RainbowOrange",
+          "RainbowGreen",
+          "RainbowViolet",
+          "RainbowCyan",
+        },
       },
     },
   },
