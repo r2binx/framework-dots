@@ -1,4 +1,5 @@
 corepack
+bun
 pnpm
 yarn
 prettier
