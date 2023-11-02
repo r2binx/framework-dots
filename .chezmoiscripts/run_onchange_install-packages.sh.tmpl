@@ -4,20 +4,21 @@ has_cmd() {
 	command -v "$1" >/dev/null 2>&1
 }
 
-ASDF_VERSION="v0.12.0"
+ASDF_VERSION="v0.13.1"
 
 declare -A ASDF_PLUGINS=(["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
 	["poetry"]="https://github.com/asdf-community/asdf-poetry.git")
 
 FISH_PLUGINS=("patrickf1/fzf.fish"
 	"kidonng/zoxide.fish"
-	"jorgebucaran/autopair.fish")
+	"jorgebucaran/autopair.fish"
+	"jorgebucaran/hydro"
+	"catppuccin/fish")
 
 FLATPAKS=("org.gtk.Gtk3theme.adw-gtk3"
 	"org.gtk.Gtk3theme.adw-gtk3-dark"
 	"com.github.tchx84.Flatseal"
-	"dev.alextren.Spot"
-	"net.werwolv.ImHex")
+	"dev.alextren.Spot")
 
 COMMON_PACKAGES=("kitty"
 	"fish"
@@ -26,7 +27,7 @@ COMMON_PACKAGES=("kitty"
 	"bat"
 	"zoxide"
 	"ripgrep"
-	"exa"
+	"eza"
 	"lsd"
 	"lazygit"
 	"git-delta"
