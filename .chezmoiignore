@@ -19,5 +19,6 @@
 .config/wofi
 .config/mako
 .config/waybar
+.config/xdg-desktop-portal
 .config/xdg-desktop-portal-wlr
 {{- end }}
