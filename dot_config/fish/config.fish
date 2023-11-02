@@ -16,6 +16,13 @@ if status is-interactive
     # set -x fzf_preview_dir_cmd 'lsd -LA --color=always -1'
     set fzf_diff_highlighter delta
 
-    starship init fish | source
+    # hydro prompt
+    set -g hydro_multiline true
+    set -g hydro_fetch true
+    set -g fish_prompt_pwd_dir_length 3
+    set -g hydro_color_pwd $fish_color_host
+    set -g hydro_color_git $fish_color_option
+    set -g hydro_color_prompt $fish_color_operator
+
 end
 
