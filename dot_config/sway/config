@@ -30,7 +30,8 @@ set $WOBSOCK $XDG_RUNTIME_DIR/wob.sock
 
 # Waybar
 bar {
-    swaybar_command launch_waybar.sh
+    swaybar_command ""
+    id "bar-0"
     mode dock
     position top
     binding_mode_indicator no
@@ -40,17 +41,12 @@ bar {
 
 bindsym $mod+o bar mode toggle
 
-exec_always launch_swaync.sh
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
-exec_always "pkill kanshi; kanshi"
 
 #exec_always nm-applet --indicator &
 #exec_always ~/.config/scripts/launch_blueman_applet.sh &
 #exec syncthingtray --wait &
-
-# Set minimum screen brightness to 5%
-exec light -s sysfs/backlight/intel_backlight -N 5
 
 ### Output configuration
 #
@@ -100,19 +96,6 @@ output $laptop {
 for_window [class="^.*"] inhibit_idle fullscreen
 for_window [app_id="^.*"] inhibit_idle fullscreen
 
-exec swayidle -w \
-        timeout 30 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
-    	    resume 'swaymsg "output * dpms on"' \
-        timeout 210 'pgrep -x swaylock > /dev/null || ~/.config/sway/swaylock.sh' \
-        timeout 270 'swaymsg "output * dpms off"' \
-    	    resume 'swaymsg "output * dpms on"' \
-        timeout 900 'systemctl suspend' \
-    	    resume 'swaymsg "output * dpms on"' \
-        before-sleep 'playerctl pause' \
-        before-sleep 'loginctl lock-session' \
-        after-resume 'swaymsg "output * dpms on"' \
-        lock 'pgrep -x swaylock > /dev/null || ~/.config/sway/swaylock.sh'
-
 
 ### Input configuration
 #
@@ -158,6 +141,7 @@ mouse_warping none
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+Ctrl+c sway_reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -331,6 +315,7 @@ for_window [app_id="syncthingtray"]              resize set width 400 px height 
 for_window [app_id="syncthingtray"]              move absolute position 1200 px 64 px
 for_window [title="Remmina Remote Desktop Client"] floating enable, resize set height 800, resize set width 750
 for_window [app_id="re.sonny.Junction"]         floating enable
+for_window [app_id = "SVPManager"] floating enable
 
 # Prevent chrome from inhibiting sway shortcuts
 for_window [app_id="chrome-*"] shortcuts_inhibitor disable
@@ -418,7 +403,7 @@ mode "opacity" {
 
 bindsym $mod+Shift+o mode "opacity"
 
-include ~/.config/sway/frappe_colors
+include ~/.cache/colors/sway
 
 #----------------------------------------#
 # window colours: border background text #
@@ -532,12 +517,8 @@ bindgesture pinch:inward+right move right
 # clipboard manager required, else clipboard gets cleared on window close
 exec wl-paste --watch cliphist store
 
-# use gnome polkit
-#exec /usr/lib/polkit-1/polkit-agent-helper-1
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+include ~/.config/sway/cursor.conf
+include ~/.config/sway/autostart.conf
 
 exec_always xrdb -load ~/.Xresources
 
-include ~/.config/sway/cursor.conf
-
-include /etc/sway/config.d/*

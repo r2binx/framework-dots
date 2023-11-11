@@ -1,0 +1,13 @@
+[Unit]
+Description=Set dark/light mode based on time
+PartOf=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/scripts/decide_theme.sh
+RemainAfterExit=true
+
+[Install]
+WantedBy=graphical-session.target

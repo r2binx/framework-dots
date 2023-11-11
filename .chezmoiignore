@@ -14,6 +14,7 @@
 .config/paru
 {{- end }}
 {{- if not .sway_conf }}
+.config/environment.d/sway.conf
 .config/sway
 .config/swaync
 .config/wofi

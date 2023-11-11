@@ -5,18 +5,19 @@
 export TZ="Europe/Berlin"
 export LANGUAGE="en_US:en:C"
 
-export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-~/.config}
-export XDG_CACHE_HOME=${XDG_CACHE_HOME:-~/.cache}
-export XDG_DATA_HOME=${XDG_DATA_HOME:-~/.local/share}
-export XDG_RUNTIME_DIR=${XDG_RUNTIME_DIR:-~/.xdg}
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$HOME/.xdg}"
 
+export LESSHISTFILE=-
 export EDITOR="nvim"
-export VISUAL="neovide"
+export VISUAL="neovide --nofork"
 export NEOVIDE_NO_VSYNC=true
 export NEOVIDE_MULTIGRID=true
 export MOZ_USE_XINPUT2=1
 export QT_WAYLAND_DECORATION="adwaita"
-export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
@@ -24,8 +25,6 @@ export ELECTRON_TRASH=trash-cli
 export JAVA_HOME=/usr/lib/jvm/java-18-jdk
 export FZF_HISTDIR="${XDG_CONFIG_HOME}/fzf/history"
 export ASDF_DIR="$HOME/.asdf"
-
-# . "$HOME/.asdf/asdf.sh"
 
 export PATH="$PNPM_HOME:$HOME/.local/bin:$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 
@@ -38,11 +37,11 @@ if [[ ${XDG_SESSION_TYPE} == "x11" ]]; then
 elif [[ ${XDG_SESSION_TYPE} == "wayland" ]]; then
 	echo "Running on Wayland"
 	export MOZ_ENABLE_WAYLAND=1
+	export MOZ_WAYLAND_USE_VAAPI=1
 	export QT_QPA_PLATFORM="wayland;xcb"
 else
 	echo "Running on ${XDG_SESSION_TYPE}"
 fi
 
-~/.config/scripts/decide_theme.sh
 
 # vim:ft=bash

@@ -1,5 +1,5 @@
 #!/bin/sh
-set -euo pipefail
+set -eu
 
 # Export all variables
 set -a
@@ -7,8 +7,8 @@ set -a
 #source /dev/fd/0 <<EOF
 #$(/usr/lib/systemd/user-environment-generators/30-systemd-environment-d-generator)
 #EOF
-[[ -f "${HOME}/.config/sway/env" ]] && . "${HOME}/.config/sway/env"
-[[ -f "${HOME}/.bash_profile" ]] && . "${HOME}/.bash_profile"
+[ -f "${HOME}/.config/sway/env" ] && . "${HOME}/.config/sway/env"
+[ -f "${HOME}/.profile" ] && . "${HOME}/.profile"
 # [[ -f "${HOME}/.zshenv" ]] && . "${HOME}/.zshenv"
 # [[ -f "${ZDOTDIR}/.zlogin" ]] && . "${ZDOTDIR}/.zlogin"
 set +a

@@ -85,7 +85,10 @@ asdf install poetry latest &&
 {{- if .sway_conf }}
 sudo pacman -Syu --noconfirm --needed sway waybar swayidle wofi cliphist
 # Wayland object leak fix not yet in repo (https://github.com/swaywm/swaylock/commit/10df946671a12b4c0f4c13d4556a8bae6fc30394)
-yay -S --needed --noconfirm swaylock-git
+yay -S --needed --noconfirm swaylock-git swayosd-git
+
+sudo systemctl enable --now swayosd-libinput-backend.service
+
 {{- end }}
 
 sudo pacman -Syu --noconfirm --needed ${COMMON_PACKAGES[@]} ${ARCH_PACKAGES[@]}

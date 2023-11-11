@@ -1,6 +1,6 @@
 #!/bin/sh
 
-CHROMIUM_CONF=~/.config/chrome-flags.conf
+CHROMIUM_CONF="$HOME/.config/chrome-flags.conf"
 
 set_bat_theme() {
 	themes=("Catppuccin-frappe" "Catppuccin-mocha")
@@ -210,11 +210,11 @@ sway_bg() {
 		;;
 	esac
 
-	echo "output * bg ~/Pictures/Wallpaper/${selected} fill" >~/.config/sway/wallpaper.conf
+	echo "output * bg ~/Pictures/Wallpaper/${selected} fill" > $XDG_CONFIG_HOME/sway/wallpaper.conf
 }
 
 sway_cursor() {
-	themes=("Bibata-Modern-Classic 24" "Bibata-Modern-Ice 24")
+	themes=("Bibata-Modern-Classic" "Bibata-Modern-Ice")
 
 	case $1 in
 	dark)
@@ -229,7 +229,7 @@ sway_cursor() {
 		;;
 	esac
 
-	echo "seat * xcursor_theme ${selected}" >~/.config/sway/cursor.conf
+	sed -i "s/^set \$cursor_theme.*/set \$cursor_theme ${selected}/" $XDG_CONFIG_HOME/sway/cursor.conf
 }
 
 wofi_colors() {
@@ -285,6 +285,72 @@ kitty_colorscheme() {
 
 }
 
+swaync_style() {
+	themes=("frappe.css" "mocha.css")
+	
+	case $1 in
+		dark)
+			selected="${themes[1]}"
+			;;
+		light)
+			selected="${themes[0]}"
+			;;
+		*)
+			echo "Invalid selection: ${1}"
+			return
+			;;
+	esac
+
+	cp "${XDG_CONFIG_HOME}/colors/swaync/${selected}" "${XDG_CACHE_HOME}/colors/swaync.css"
+
+}
+
+sway_style() {
+	themes=("catppuccin-frappe" "catppuccin-mocha")
+	
+	case $1 in
+		dark)
+			selected="${themes[1]}"
+			;;
+		light)
+			selected="${themes[0]}"
+			;;
+		*)
+			echo "Invalid selection: ${1}"
+			return
+			;;
+	esac
+
+	cp "${XDG_CONFIG_HOME}/colors/sway/${selected}" "${XDG_CACHE_HOME}/colors/sway"
+
+}
+
+waybar_style() {
+	themes=("frappe.css" "mocha.css")
+	
+	case $1 in
+		dark)
+			selected="${themes[1]}"
+			;;
+		light)
+			selected="${themes[0]}"
+			;;
+		*)
+			echo "Invalid selection: ${1}"
+			return
+			;;
+	esac
+
+	cp "${XDG_CONFIG_HOME}/colors/waybar/${selected}" "${XDG_CACHE_HOME}/colors/waybar.css"
+
+}
+
+copy_color_files() {
+	waybar_style "$1"
+	sway_style "$1"
+	swaync_style "$1"
+}
+
 set_gtk_settings() {
 
 	case $1 in
@@ -295,7 +361,7 @@ set_gtk_settings() {
 		set_adw_gtk_theme dark
 		;;
 	light)
-		gsettings set org.gnome.desktop.interface color-scheme 'default'
+		gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
 		gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
 		gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
 		set_adw_gtk_theme light
@@ -313,7 +379,7 @@ if [ "$1" = "light" ]; then
 	set_zathura_theme light
 	set_xresources_theme light
 	set_gtk_settings light
-	chrome_light
+	#chrome_light
 	#set_adw_ff_theme light
 	wofi_colors light
 	set_btop_theme light
@@ -323,6 +389,7 @@ if [ "$1" = "light" ]; then
 	if [ "${XDG_CURRENT_DESKTOP}" = "sway" ]; then
 		sway_cursor light
 		sway_bg light
+		copy_color_files light
 	fi
 	if [ "${XDG_CURRENT_DESKTOP}" = "Hyprland" ]; then
 		hypr_cursor light
@@ -334,7 +401,7 @@ elif [ "$1" = "dark" ]; then
 	set_xresources_theme dark
 	set_zathura_theme dark
 	set_gtk_settings dark
-	chrome_dark
+	#chrome_dark
 	#set_adw_ff_theme dark
 	wofi_colors dark
 	set_nvim_cat_flavour dark
@@ -344,6 +411,7 @@ elif [ "$1" = "dark" ]; then
 	if [ "${XDG_CURRENT_DESKTOP}" = "sway" ]; then
 		sway_cursor dark
 		sway_bg dark
+		copy_color_files dark
 	fi
 	if [ "${XDG_CURRENT_DESKTOP}" = "Hyprland" ]; then
 		hypr_cursor dark

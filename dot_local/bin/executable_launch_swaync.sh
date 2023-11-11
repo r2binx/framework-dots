@@ -10,5 +10,5 @@ fi
 
 SDIR="${HOME}/.config/swaync"
 
-swaync --style "${SDIR}/${theme}.css" &
+swaync --style "${SDIR}/style.css" &
 swaync-client -rs

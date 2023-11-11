@@ -12,7 +12,7 @@
 
 --tabs=4
 
---style="full"
+--style="auto"
 
 --line-range=:1000
 

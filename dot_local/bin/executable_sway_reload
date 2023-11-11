@@ -1,0 +1,8 @@
+#!/bin/sh
+
+systemctl restart --user kanshi.service &&
+	swaymsg reload &&
+	systemctl reload --user swaync.service &&
+	systemctl reload --user waybar.service
+
+notify-send "Reloaded Sway components"

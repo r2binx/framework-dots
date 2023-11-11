@@ -1,12 +1,12 @@
 
 function _fzf_theme
       set -l theme
-      if not test -f /tmp/theme
+      if test -f /tmp/theme
           read $theme </tmp/theme
-      else if not test (gsettings get org.gnome.desktop.interface color-scheme) = \'default\'
-          set theme dark
-      else
+      else if test (gsettings get org.gnome.desktop.interface color-scheme) = \'default\' -o (gsettings get org gnome.desktop.interface color-scheme) = \'prefer-light\'
           set theme light
+      else
+          set theme dark
       end
 
       echo $theme

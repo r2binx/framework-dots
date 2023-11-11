@@ -36,15 +36,15 @@
         "light": ["","","",""],
         "dark": ["","","",""],
     },
-    "on-click": "~/.config/scripts/toggle_dark.sh",
-    "on-scroll-down": "light -s sysfs/backlight/intel_backlight -A 5 && light -G | cut -d'.' -f1 > #WOBSOCK",
-    "on-scroll-up": "light -s sysfs/backlight/intel_backlight -U 5 && light -G | cut -d'.' -f1 > #WOBSOCK",
+    "on-click": "env XDG_CURRENT_DESKTOP=sway ~/.config/scripts/toggle_dark.sh",
+    "on-scroll-down": "swayosd-client --brightness -5",
+    "on-scroll-up": "swayosd-client --brightness 5",
     "exec": "~/.config/waybar/get_theme.sh",
+    "reverse-scrolling": true,
     "smooth-scrolling-threshold": 6.5,
-    "interval": "once",
+    "interval": 3,
     "return-type": "json",
     "tooltip": false,
-    "signal": 8,
   },
   "sway/workspaces": {
     "disable-scroll-wraparound": true,
@@ -96,15 +96,16 @@
     "states": {
       "warning": 95,
     },
-    "on-scroll-up": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%- && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2*100}' > #WOBSOCK",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+ && wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2*100}' > #WOBSOCK",
-    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-scroll-up": "swayosd-client --output-volume 2",
+    "on-scroll-down": "swayosd-client --output-volume -2",
+    "on-click": "swayosd-client --output-volume mute-toggle",
     "on-click-right": "pavucontrol",
+    "reverse-scrolling": true,
     "smooth-scrolling-threshold": 1.5,
     "tooltip": false,
   },
   "battery": {
-    "interval": 10,
+    "interval": 5,
     "states": {
       "warning": 25,
       "critical": 10
@@ -197,7 +198,7 @@
     "on-click-right": "blueman-manager"
   },
   "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
     "critical-threshold": 90,
     "tooltip": false,
     "format": " {temperatureC}°C"

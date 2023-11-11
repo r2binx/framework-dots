@@ -3,9 +3,9 @@
 daytime=$(date +%H)
 
 if [ $daytime -ge 21 ] || [ $daytime -le 7 ]; then
-	~/.config/scripts/theme_toggle.sh dark
+	$HOME/.config/scripts/theme_toggle.sh dark
 	echo "dark" >/tmp/theme
 else
-	~/.config/scripts/theme_toggle.sh light
+	$HOME/.config/scripts/theme_toggle.sh light
 	echo "light" >/tmp/theme
 fi

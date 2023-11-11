@@ -46,13 +46,32 @@ tooltip label {
 #custom-launcher {
   color: @blue;
 }
-#scratchpad, #mode, #clock, #tray, #memory, #temperature,#cpu,#mpd, #idle_inhibitor, #backlight, #pulseaudio, #bluetooth, #network, #battery, #custom-powermenu, #custom-cava-internal, #custom-launcher, #custom-theme_toggle, #custom-notification {
+
+#scratchpad,
+#mode,
+#clock,
+#tray,
+#memory,
+#temperature,
+#cpu,
+#mpd,
+#idle_inhibitor,
+#backlight,
+#pulseaudio,
+#bluetooth,
+#network,
+#battery,
+#custom-powermenu,
+#custom-cava-internal,
+#custom-launcher,
+#custom-theme_toggle,
+#custom-notification {
   padding: 0.4rem 1rem;
   margin: 5px 0;
 }
 
 #scratchpad {
-  color: @text
+  color: @text;
 }
 
 #tray {
@@ -70,28 +89,34 @@ tooltip label {
 #custom-theme_toggle.dark {
   color: @mauve;
 }
+
 #custom-theme_toggle.light {
   color: @peach;
 }
+
 #custom-theme_toggle:hover {
   color: @surface2;
 }
+
 #custom-theme_toggle {
   padding-left: 0.8rem;
   border-radius: 0px 1rem 1rem 0px;
   background-color: @surface0;
 }
+
 #clock {
   background-color: @surface0;
   border-radius: 1rem 0px 0px 1rem;
   padding-right: 0px;
   color: @text;
 }
+
 #idle_inhibitor {
   border-radius: 1rem 0px 0px 1rem;
   background-color: @surface0;
   color: @mauve;
 }
+
 #temperature {
   color: @teal;
 }
@@ -128,34 +153,44 @@ tooltip label {
   background-color: @surface0;
   color: @green;
 }
+
 #network.disconnected {
   color: @text;
 }
+
 #battery {
   padding-left: 0px;
   border-radius: 0px 1rem 1rem 0px;
   background-color: @surface0;
 }
 
-#battery.charging, #battery.full, #battery.discharging {
+#battery.charging,
+#battery.full,
+#battery.discharging {
   color: @rosewater;
 }
+
 #battery.plugged {
   color: @sapphire;
 }
+
 #battery.critical:not(.charging) {
   color: @red;
 }
+
 #custom-powermenu {
   color: @flamingo;
 }
+
 #mpd.paused {
   color: #414868;
   font-style: italic;
 }
+
 #mpd.stopped {
   background: transparent;
 }
+
 #mpd {
   color: #c0caf5;
 }
