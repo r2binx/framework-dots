@@ -14,6 +14,9 @@
 .config/paru
 {{- end }}
 {{- if not .sway_conf }}
+.config/colors/sway
+.config/colors/swaync
+.config/colors/waybar
 .config/environment.d/sway.conf
 .config/sway
 .config/swaync
@@ -22,4 +25,9 @@
 .config/waybar
 .config/xdg-desktop-portal
 .config/xdg-desktop-portal-wlr
+.local/bin/sway*
+.config/systemd/user/sway*
+.config/systemd/user/waybar.service
+.config/systemd/user/kanshi.service
+.config/systemd/user/polkit-gnome.service
 {{- end }}
