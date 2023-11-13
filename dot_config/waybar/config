@@ -10,6 +10,7 @@
     "temperature",
     "memory",
     "cpu",
+    "sway/mode"
   ],
   "modules-center": [
     "clock",
@@ -23,7 +24,7 @@
     "battery",
     "tray",
     "sway/scratchpad",
-    "custom/powermenu",
+    "custom/powermenu"
   ],
   "custom/launcher": {
     "format": " ",
@@ -33,8 +34,18 @@
   "custom/theme_toggle": {
     "format": "{icon}",
     "format-icons": {
-        "light": ["","","",""],
-        "dark": ["","","",""],
+      "light": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "dark": [
+        "",
+        "",
+        "",
+        ""
+      ]
     },
     "on-click": "env XDG_CURRENT_DESKTOP=sway ~/.config/scripts/toggle_dark.sh",
     "on-scroll-down": "swayosd-client --brightness -5",
@@ -44,7 +55,12 @@
     "smooth-scrolling-threshold": 6.5,
     "interval": 3,
     "return-type": "json",
-    "tooltip": false,
+    "tooltip": false
+  },
+  "sway/mode": {
+    "format": " {}",
+    "max-length": 50,
+    "tooltip": false
   },
   "sway/workspaces": {
     "disable-scroll-wraparound": true,
@@ -54,7 +70,7 @@
       "focused": "",
       "default": ""
     },
-    "smooth-scrolling-threshold": 4.5
+    "smooth-scrolling-threshold": 3.5
   },
   "idle_inhibitor": {
     "format": "{icon}",
@@ -88,13 +104,29 @@
     "format": "{icon}",
     "format-muted": "婢",
     "format-icons": {
-      "headphone": [" ", " ", " "],
-      "headset": ["﫽 ", "﫽 ", "﫽 "],
-      "hands-free": [" ", " ", " "],
-      "default": ["", "", ""]
+      "headphone": [
+        " ",
+        " ",
+        " "
+      ],
+      "headset": [
+        "﫽 ",
+        "﫽 ",
+        "﫽 "
+      ],
+      "hands-free": [
+        " ",
+        " ",
+        " "
+      ],
+      "default": [
+        "",
+        "",
+        ""
+      ]
     },
     "states": {
-      "warning": 95,
+      "warning": 95
     },
     "on-scroll-up": "swayosd-client --output-volume 2",
     "on-scroll-down": "swayosd-client --output-volume -2",
@@ -102,7 +134,7 @@
     "on-click-right": "pavucontrol",
     "reverse-scrolling": true,
     "smooth-scrolling-threshold": 1.5,
-    "tooltip": false,
+    "tooltip": false
   },
   "battery": {
     "interval": 5,
@@ -111,7 +143,17 @@
       "critical": 10
     },
     "format": "{icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "format-icons": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
     "format-plugged": " ",
     "format-charging": " {icon}",
     "tooltip-format-plugged": "",
@@ -128,7 +170,7 @@
     "smooth-scrolling-threshold": 6,
     "calendar": {
       "mode": "month",
-      "mode-mon-col"  : 2,
+      "mode-mon-col": 2,
       "weeks-pos": "right",
       "on-scroll": 1,
       "on-click-right": "mode",
@@ -136,10 +178,10 @@
         "months": "<span color='#ffead3'><b>{}</b></span>",
         "weekdays": "<span color='#B5E8E0'><b>{}</b></span>",
         "weeks": "<span color='#DDB6F2'><b>{:%V}</b></span>",
-        "today": "<span color='#ecc6d9'><b><u>{}</u></b></span>",
-        }
+        "today": "<span color='#ecc6d9'><b><u>{}</u></b></span>"
+      }
     },
-   "actions": {
+    "actions": {
       "on-click-right": "mode",
       "on-scroll-up": "shift_down",
       "on-scroll-down": "shift_up"
@@ -149,8 +191,8 @@
     "interval": 4,
     "format": "﬙ {percentage:2}%",
     "states": {
-      "warning": 85,
-    },
+      "warning": 85
+    }
   },
   "cpu": {
     "interval": 4,
@@ -160,45 +202,54 @@
     "max-length": 25,
     "format": "<span foreground='#bb9af7'></span> {title}",
     "format-paused": " {title}",
-    "format-stopped":"<span foreground='#bb9af7'></span>",
+    "format-stopped": "<span foreground='#bb9af7'></span>",
     "format-disconnected": "",
     "on-click": "mpc --quiet toggle",
     "on-click-right": "mpc ls | mpc add",
     "on-click-middle": "kitty ncmpcpp",
     "on-scroll-up": "mpc --quiet prev",
     "on-scroll-down": "mpc --quiet next",
-    "smooth-scrolling-threshold":5,
+    "smooth-scrolling-threshold": 5,
     "tooltip-format": "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})"
   },
   "network": {
-    "interval": 4,
-    "format-wifi": "{icon} {essid}",
-    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+    "interval": 3,
+    "format": "{ifname}",
     "format-ethernet": "  {ifname}",
     "format-linked": "󰲜 {essid} (No IP)",
-    "format-disconnected": "󰣽 Disconnected",
+    "format-disconnected": "󰤫 Disconnected",
+    "format-disabled": "󰤮 ",
+    "format-wifi": "{icon} {essid}",
+    "format-icons": [
+      "󰤟",
+      "󰤢",
+      "󰤥",
+      "󰤨"
+    ],
+    "format-disabled-if-down": true,
     "tooltip-format-wifi": "{essid} ({signalStrength}%)\n  {ipaddr}\n  {gwaddr}/{cidr}",
     "tooltip-format-ethernet": "  {ipaddr}\n  {gwaddr}/{cidr}",
-    "tooltip-format-disconnected": "Disconnected",
+    "tooltip-format-disabled": "",
+    "tooltip-format-disconnected": "",
     "on-click": "networkmanager_dmenu",
     "on-click-right": "nmtui",
     "max-length": 30,
     "tooltip": true
   },
   "bluetooth": {
-  	"format-on": "",
+    "format-on": "",
     "format-disabled": "",
     "format-off": "",
-  	"format-connected": " {num_connections}",
-  	"tooltip-format": "{controller_alias}\t{controller_address}",
-  	"tooltip-format-connected": "{device_enumerate}",
-  	"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-  	"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
+    "format-connected": " {num_connections}",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "tooltip-format-connected": "{device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
     "on-click": "rfkill toggle bluetooth",
     "on-click-right": "blueman-manager"
   },
   "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon4/temp1_input",
     "critical-threshold": 90,
     "tooltip": false,
     "format": " {temperatureC}°C"
@@ -206,7 +257,10 @@
   "sway/scratchpad": {
     "format": "{icon} {count}",
     "show-empty": false,
-    "format-icons": ["", ""],
+    "format-icons": [
+      "",
+      ""
+    ],
     "on-click": "swaymsg 'scratchpad show'",
     "on-click-right": "swaymsg 'move scratchpad'",
     "tooltip": true,
@@ -220,5 +274,6 @@
   "tray": {
     "icon-size": 16,
     "spacing": 8
-  },
+  }
 }
+// vim:ft=jsonc

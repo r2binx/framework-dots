@@ -28,6 +28,11 @@
   border-radius: 1rem;
 }
 
+#workspaces button.urgent {
+  color: @yellow;
+  border-radius: 1rem;
+}
+
 #workspaces button:hover {
   background-color: @pink;
   color: @sapphire;
@@ -52,6 +57,7 @@ tooltip label {
 #clock,
 #tray,
 #memory,
+#backlight-slider,
 #temperature,
 #cpu,
 #mpd,
@@ -68,6 +74,10 @@ tooltip label {
 #custom-notification {
   padding: 0.4rem 1rem;
   margin: 5px 0;
+}
+
+#mode {
+  color: @text;
 }
 
 #scratchpad {
@@ -151,11 +161,27 @@ tooltip label {
 #network {
   padding-left: 0px;
   background-color: @surface0;
-  color: @green;
+  color: @text;
 }
 
 #network.disconnected {
-  color: @text;
+  color: @yellow;
+}
+
+#network.disabled {
+  color: @lavender;
+}
+
+#network.linked {
+  color: @peach;
+}
+
+#network.wifi {
+  color: @teal;
+}
+
+#network.ethernet {
+  color: @green;
 }
 
 #battery {
