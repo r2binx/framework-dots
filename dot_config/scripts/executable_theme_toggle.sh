@@ -361,7 +361,7 @@ set_gtk_settings() {
 		set_adw_gtk_theme dark
 		;;
 	light)
-		gsettings set org.gnome.desktop.interface color-scheme 'prefer-light'
+		[ "${XDG_CURRENT_DESKTOP}" = "sway" ] && gsettings set org.gnome.desktop.interface color-scheme 'prefer-light' || gsettings set org.gnome.desktop.interface color-scheme 'default'
 		gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
 		gsettings set org.gnome.desktop.interface cursor-theme 'Bibata-Modern-Classic'
 		set_adw_gtk_theme light
