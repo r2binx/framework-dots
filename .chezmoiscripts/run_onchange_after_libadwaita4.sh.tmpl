@@ -38,7 +38,7 @@ has_cmd() {
 
 if has_cmd flatpak; then
 	set -x
-	sudo flatpak override --filesystem=~/.local/share/themes
+	sudo flatpak override --filesystem=xdg-config/gtk-3.0:ro --filesystem=xdg-config/gtk-4.0:ro --filesystem=~/.local/share/themes:ro --filesystem=/usr/share/themes:ro --filesystem=/usr/share/icons:ro
 fi
 
 # vim:ft=sh
