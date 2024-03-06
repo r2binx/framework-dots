@@ -13,16 +13,14 @@ export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-$HOME/.xdg}"
 
 export LESSHISTFILE=-
 export EDITOR="nvim"
-export VISUAL="neovide --nofork"
-export NEOVIDE_NO_VSYNC=true
-export NEOVIDE_MULTIGRID=true
+export VISUAL="neovide --no-fork"
 export MOZ_USE_XINPUT2=1
 export QT_WAYLAND_DECORATION="adwaita"
 export PNPM_HOME="${XDG_DATA_HOME}/pnpm"
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export ELECTRON_TRASH=trash-cli
-export JAVA_HOME=/usr/lib/jvm/java-18-jdk
+export JAVA_HOME=/usr/lib/jvm/java-21-jdk
 export FZF_HISTDIR="${XDG_CONFIG_HOME}/fzf/history"
 export ASDF_DIR="$HOME/.asdf"
 

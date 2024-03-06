@@ -1,136 +1,142 @@
 {
-  "$schema": "./configSchema.json",
-  "positionX": "right",
-  "positionY": "top",
-  "layer": "top",
-  "cssPriority": "application",
-  "control-center-margin-top": 0,
-  "control-center-margin-bottom": 0,
-  "control-center-margin-right": 0,
-  "control-center-margin-left": 0,
-  "notification-icon-size": 64,
-  "notification-body-image-height": 100,
-  "notification-body-image-width": 200,
-  "timeout": 5,
-  "timeout-low": 2,
-  "timeout-critical": 0,
-  "fit-to-screen": true,
-  "control-center-width": 500,
-  "control-center-height": 600,
-  "notification-window-width": 500,
-  "keyboard-shortcuts": true,
-  "image-visibility": "when-available",
-  "transition-time": 200,
-  "hide-on-clear": false,
-  "hide-on-action": true,
-  "script-fail-notify": true,
-  "scripts": {
-    "example-script": {
-      "exec": "echo 'Do something...'",
-      "urgency": "Normal"
-    },
-    "example-action-script": {
-      "exec": "echo 'Do something actionable!'",
-      "urgency": "Normal",
-      "run-on": "action"
-    }
-  },
-  "notification-visibility": {
-    "example-name": {
-      "state": "muted",
-      "urgency": "Low",
-      "app-name": "Spotify"
-    }
-  },
-  "widgets": [
-    "buttons-grid",
-    "inhibitors",
-    "mpris",
-    "title",
-    "dnd",
-    "notifications"
-  ],
-  "widget-config": {
-    "label": {
-      "max-lines": 5,
-      "text": "Label Text"
-    },
-    "volume": {
-      "label": ""
-    },
-    "backlight": {
-      "device": "intel_backlight",
-      "min": 5,
-      "label": ""
-    },
-    "menubar": {
-      "menu": {
-        "position": "left",
-        "label": "⏻   Power",
-        "actions": [
-          {
-            "label": "  Lock",
-            "command": "exec ~/.config/sway/swaylock.sh"
-          },
-          {
-            "label": "  Logout",
-            "command": "swaymsg exit"
-          },
-          {
-            "label": "鈴  Suspend",
-            "command": "systemctl suspend"
-          },
-          {
-            "label": "  Hibernate",
-            "command": "systemctl hibernate"
-          },
-          {
-            "label": "勒  Reboot",
-            "command": "systemctl reboot"
-          },
-          {
-            "label": "⏻  Shutdown",
-            "command": "exec systemctl poweroff -i"
-          }
-        ]
-      }
-    },
-    "buttons-grid": {
-      "actions": [
-        {
-          "label": "󰐻 ",
-          "command": "swaync-client -cp && networkmanager_dmenu"
+    "$schema": "./configSchema.json",
+    "positionX": "right",
+    "positionY": "top",
+    "layer": "overlay",
+    "layer-shell": true,
+    "control-center-layer": "top",
+    "cssPriority": "application",
+    "control-center-margin-top": 0,
+    "control-center-margin-bottom": 0,
+    "control-center-margin-right": 0,
+    "control-center-margin-left": 0,
+    "notification-2fa-action": true,
+    "notification-inline-replies": false,
+    "notification-icon-size": 64,
+    "notification-body-image-height": 100,
+    "notification-body-image-width": 200,
+    "timeout": 5,
+    "timeout-low": 2,
+    "timeout-critical": 0,
+    "fit-to-screen": true,
+    "relative-timestamps": true,
+    "control-center-width": 500,
+    "control-center-height": 600,
+    "notification-window-width": 500,
+    "keyboard-shortcuts": true,
+    "image-visibility": "when-available",
+    "transition-time": 200,
+    "hide-on-clear": false,
+    "hide-on-action": true,
+    "script-fail-notify": true,
+    "scripts": {
+        "example-script": {
+            "exec": "echo 'Do something...'",
+            "urgency": "Normal"
         },
-        {
-          "label": " ",
-          "command": "swaync-client -cp && blueman-manager"
-        },
-        {
-          "label": "󱣴 ",
-          "command": "swaync-client -cp && ~/.config/scripts/grimshot.sh -w"
-        },
-        {
-          "label": "󰹙 ",
-          "command": "swaync-client -cp && ~/.config/scripts/grimshot.sh -a"
+        "example-action-script": {
+            "exec": "echo 'Do something actionable!'",
+            "urgency": "Normal",
+            "run-on": "action"
         }
-      ]
     },
-    "inhibitors": {
-      "text": "Inhibitors",
-      "button-text": "Clear All",
-      "clear-all-button": true
+    "notification-visibility": {
+        "example-name": {
+            "state": "muted",
+            "urgency": "Low",
+            "app-name": "Spotify"
+        }
     },
-    "mpris": {
-      "image-size": 96,
-      "image-radius": 12
-    },
-    "title": {
-      "text": "Notifications",
-      "clear-all-button": true,
-      "button-text": "Clear All"
-    },
-    "dnd": {
-      "text": "Do Not Disturb"
+    "widgets": [
+        "buttons-grid",
+        "inhibitors",
+        "mpris",
+        "title",
+        "dnd",
+        "notifications"
+    ],
+    "widget-config": {
+        "label": {
+            "max-lines": 5,
+            "text": "Label Text"
+        },
+        "volume": {
+            "label": ""
+        },
+        "backlight": {
+            "device": "intel_backlight",
+            "min": 5,
+            "label": ""
+        },
+        "menubar": {
+            "menu": {
+                "position": "left",
+                "label": "⏻   Power",
+                "actions": [
+                    {
+                        "label": "  Lock",
+                        "command": "exec ~/.config/sway/swaylock.sh"
+                    },
+                    {
+                        "label": "  Logout",
+                        "command": "swaymsg exit"
+                    },
+                    {
+                        "label": "鈴  Suspend",
+                        "command": "systemctl suspend"
+                    },
+                    {
+                        "label": "  Hibernate",
+                        "command": "systemctl hibernate"
+                    },
+                    {
+                        "label": "勒  Reboot",
+                        "command": "systemctl reboot"
+                    },
+                    {
+                        "label": "⏻  Shutdown",
+                        "command": "exec systemctl poweroff -i"
+                    }
+                ]
+            }
+        },
+        "buttons-grid": {
+            "actions": [
+                {
+                    "label": "󰐻 ",
+                    "command": "swaync-client -cp && networkmanager_dmenu"
+                },
+                {
+                    "label": " ",
+                    "command": "swaync-client -cp && blueman-manager"
+                },
+                {
+                    "label": "󱣴 ",
+                    "command": "swaync-client -cp && ~/.config/scripts/grimshot.sh -w"
+                },
+                {
+                    "label": "󰹙 ",
+                    "command": "swaync-client -cp && ~/.config/scripts/grimshot.sh -a"
+                }
+            ]
+        },
+        "inhibitors": {
+            "text": "Inhibitors",
+            "button-text": "Clear All",
+            "clear-all-button": true
+        },
+        "mpris": {
+            "image-size": 96,
+            "image-radius": 12,
+            "blur": false
+        },
+        "title": {
+            "text": "Notifications",
+            "clear-all-button": true,
+            "button-text": "Clear All"
+        },
+        "dnd": {
+            "text": "Do Not Disturb"
+        }
     }
-  }
 }
