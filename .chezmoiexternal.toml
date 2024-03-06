@@ -32,3 +32,10 @@ refreshPeriod = "744h"
 stripComponents = 2
 include = ["*/themes/**"]
 url = "https://github.com/kkrypt0nn/jetbrains-fleet/archive/refs/heads/main.zip"
+[".config/bat/themes"]
+type = "archive"
+exact = false
+refreshPeriod = "744h"
+stripComponents = 2
+include = ["*/themes/**"]
+url = "https://github.com/catppuccin/bat/archive/refs/heads/main.zip"

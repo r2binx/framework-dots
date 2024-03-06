@@ -4,7 +4,7 @@ has_cmd() {
 	command -v "$1" >/dev/null 2>&1
 }
 
-ASDF_VERSION="v0.13.1"
+ASDF_VERSION="v0.14.0"
 
 declare -A ASDF_PLUGINS=(["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
 	["poetry"]="https://github.com/asdf-community/asdf-poetry.git")
@@ -30,6 +30,7 @@ COMMON_PACKAGES=("kitty"
 	"eza"
 	"lsd"
 	"lazygit"
+	"difftastic"
 	"git-delta"
 	"nnn"
 	"neovim"
