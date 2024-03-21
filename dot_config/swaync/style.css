@@ -14,7 +14,7 @@
   outline: none;
 }
 
-.notification-row:focus, .notification-row:hover {
+.notification-row:focus, .otification-row:hover {
   background: @noti-bg-hover;
 }
 
@@ -226,8 +226,9 @@
   color: @text-color;
 }
 
-.notification-group .notification-group-headers {
+.notification-group .notification-group-headers > * {
   /* Notification Group Headers */
+  font-size: 1.3rem;
 }
 
 .notification-group .notification-group-headers .notification-group-icon {
@@ -238,8 +239,26 @@
   color: @text-color;
 }
 
-.notification-group .notification-group-buttons {
+.notification-group .notification-group-buttons > button {
   /* Notification Group Buttons */
+  background: @noti-close-bg;
+  color: @overlay2;
+  text-shadow: none;
+  box-shadow: none;
+  border: none;
+
+}
+
+.notification-group .notification-group-buttons > button:hover {
+  box-shadow: none;
+  background: @lavender;
+  color: @surface0;
+  transition: background 0.15s ease-in-out;
+  border: none;
+}
+
+.notification-group .notification-group-buttons > button:last-child:hover {
+  background: @noti-close-bg-hover;
 }
 
 .notification-group.collapsed .notification-row .notification {

@@ -3,7 +3,7 @@
 CHROMIUM_CONF="$HOME/.config/chrome-flags.conf"
 
 set_bat_theme() {
-	themes=("Catppuccin-frappe" "Catppuccin-mocha")
+	themes=("Catppuccin Frappe" "Catppuccin Mocha")
 
 	case $1 in
 	dark)
