@@ -1,85 +1,92 @@
 #!/bin/bash
 
 has_cmd() {
-	command -v "$1" >/dev/null 2>&1
+  command -v "$1" >/dev/null 2>&1
 }
 
 ASDF_VERSION="v0.14.0"
 
 declare -A ASDF_PLUGINS=(["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
-	["poetry"]="https://github.com/asdf-community/asdf-poetry.git")
+  ["poetry"]="https://github.com/asdf-community/asdf-poetry.git")
 
 FISH_PLUGINS=("patrickf1/fzf.fish"
-	"kidonng/zoxide.fish"
-	"jorgebucaran/autopair.fish"
-	"jorgebucaran/hydro"
-	"catppuccin/fish")
+  "kidonng/zoxide.fish"
+  "jorgebucaran/autopair.fish"
+  "jorgebucaran/hydro"
+  "catppuccin/fish")
 
 FLATPAKS=("org.gtk.Gtk3theme.adw-gtk3"
-	"org.gtk.Gtk3theme.adw-gtk3-dark"
-	"com.github.tchx84.Flatseal"
-	"dev.alextren.Spot")
+  "org.gtk.Gtk3theme.adw-gtk3-dark"
+  "com.github.tchx84.Flatseal"
+  "dev.alextren.Spot")
 
 COMMON_PACKAGES=("kitty"
-	"fish"
-	"starship"
-	"fzf"
-	"bat"
-	"zoxide"
-	"ripgrep"
-	"eza"
-	"lsd"
-	"lazygit"
-	"difftastic"
-	"git-delta"
-	"nnn"
-	"neovim"
-	"htop"
-	"btop"
-	"nload")
+  "fish"
+  "starship"
+  "fzf"
+  "bat"
+  "zoxide"
+  "ripgrep"
+  "eza"
+  "lsd"
+  "lazygit"
+  "difftastic"
+  "git-delta"
+  "nnn"
+  "neovim"
+  "htop"
+  "btop"
+  "nload"
+  "tuned"
+  "tuned-ppd")
 
 ARCH_PACKAGES=("fisher"
-	"fd"
-	"neovide"
-	"rustup"
-	"intel-gpu-tools"
-	"turbostat"
-	"cpupower")
+  "fd"
+  "neovide"
+  "rustup"
+  "intel-gpu-tools"
+  "turbostat"
+  "cpupower"
+  "arch-wiki-docs"
+  "arch-wiki-lite"
+  "dialog"
+  "adw-gtk-theme")
 
 FEDORA_PACKAGES=("fd-find"
-	"igt-gpu-tools")
+  "adw-gtk3-theme"
+  "igt-gpu-tools")
 
 if ! has_cmd "git-fuzzy"; then
-	ln -s ~/.local/share/git-fuzzy/bin/git-fuzzy ~/.local/bin/git-fuzzy
+  ln -s ~/.local/share/git-fuzzy/bin/git-fuzzy ~/.local/bin/git-fuzzy
 fi
 
 if has_cmd "flatpak"; then
-	existing_flatpaks=($(flatpak list --columns=application | tail -n +1))
-	for app in ${FLATPAKS[@]}; do
-		if [[ ! " ${existing_flatpaks[@]} " =~ " ${app} " ]]; then
-			flatpak install -y "${app}"
-		fi
-	done
+  existing_flatpaks=($(flatpak list --columns=application | tail -n +1))
+  for app in ${FLATPAKS[@]}; do
+    if [[ ! " ${existing_flatpaks[@]} " =~ " ${app} " ]]; then
+      flatpak install -y "${app}"
+    fi
+  done
 fi
 
 if ! has_cmd "asdf"; then
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_VERSION
-	. "$HOME/.bash_profile"
+  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_VERSION
+  . "$HOME/.bash_profile"
 fi
 
 existing_asdf_plugins=($(asdf plugin list))
 for plugin in ${!ASDF_PLUGINS[@]}; do
-	if [[ ! " ${existing_asdf_plugins[@]} " =~ " ${plugin} " ]]; then
-		asdf plugin add $plugin ${ASDF_PLUGINS["$plugin"]}
-	fi
+  if [[ ! " ${existing_asdf_plugins[@]} " =~ " ${plugin} " ]]; then
+    asdf plugin add $plugin ${ASDF_PLUGINS["$plugin"]}
+  fi
 done
 
 node_lts="$(asdf list-all nodejs | grep "^18" | tail -1)"
 asdf install nodejs "$node_lts" &&
-	asdf global nodejs "$node_lts"
+  asdf global nodejs "$node_lts"
 
 asdf install poetry latest &&
-	asdf global poetry latest
+  asdf global poetry latest
 
 {{- if eq .chezmoi.osRelease.id "arch" }}
 
@@ -98,25 +105,23 @@ sudo pacman -Syu --noconfirm --needed ${COMMON_PACKAGES[@]} ${ARCH_PACKAGES[@]}
 {{- else if eq .chezmoi.osRelease.id "fedora" }}
 
 for app in "lazygit" "starship"; do
-	if ! sudo dnf -C -q info $app >/dev/null 2>&1; then
-		sudo dnf copr enable atim/$app -y
-	fi
+  if ! sudo dnf -C -q info $app >/dev/null 2>&1; then
+    sudo dnf copr enable atim/$app -y
+  fi
 done
 
 sudo dnf upgrade --refresh -y &&
-	sudo dnf install -y ${COMMON_PACKAGES[@]} ${FEDORA_PACKAGES[@]}
+  sudo dnf install -y ${COMMON_PACKAGES[@]} ${FEDORA_PACKAGES[@]}
 
 if ! fish -c "fisher" >/dev/null 2>&1; then
-	fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
+  fish -c "curl -sL https://raw.githubusercontent.com/jorgebucaran/fisher/main/functions/fisher.fish | source && fisher install jorgebucaran/fisher"
 fi
 
 {{- end }}
 
 existing_fish_plugins=($(fish -c 'fisher list'))
 for plugin in ${FISH_PLUGINS[@]}; do
-	if [[ ! " ${existing_fish_plugins[@]} " =~ " ${plugin} " ]]; then
-		fish -c "fisher install ${plugin}"
-	fi
+  if [[ ! " ${existing_fish_plugins[@]} " =~ " ${plugin} " ]]; then
+    fish -c "fisher install ${plugin}"
+  fi
 done
-
-# vim:ft=bash

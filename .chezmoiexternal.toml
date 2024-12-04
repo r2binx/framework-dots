@@ -11,6 +11,11 @@ exact = true
 stripComponents = 1
 refreshPeriod = "168h"
 exclude = ["*/Beispiele/**"]
+[".local/bin/lscolors.csh"]
+type = "file"
+url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.csh"
+refreshPeriod = "168h"
+executable = true
 [".local/bin/lscolors.sh"]
 type = "file"
 url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh"
@@ -21,17 +26,6 @@ type = "git-repo"
 url = "https://github.com/bigH/git-fuzzy.git"
 exact = true
 refreshPeriod = "744h"
-[".local/share/themes"]
-type = "archive"
-exact = false
-url = "https://github.com/lassekongo83/adw-gtk3/releases/download/v5.1/adw-gtk3v5-1.tar.xz"
-[".fleet/themes"]
-type = "archive"
-exact = false
-refreshPeriod = "744h"
-stripComponents = 2
-include = ["*/themes/**"]
-url = "https://github.com/kkrypt0nn/jetbrains-fleet/archive/refs/heads/main.zip"
 [".config/bat/themes"]
 type = "archive"
 exact = false
