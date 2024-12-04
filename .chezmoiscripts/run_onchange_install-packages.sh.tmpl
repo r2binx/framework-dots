@@ -4,23 +4,20 @@ has_cmd() {
   command -v "$1" >/dev/null 2>&1
 }
 
-ASDF_VERSION="v0.14.0"
-
-declare -A ASDF_PLUGINS=(["nodejs"]="https://github.com/asdf-vm/asdf-nodejs.git"
-  ["poetry"]="https://github.com/asdf-community/asdf-poetry.git")
-
 FISH_PLUGINS=("patrickf1/fzf.fish"
   "kidonng/zoxide.fish"
   "jorgebucaran/autopair.fish"
-  "jorgebucaran/hydro"
+  "IlanCosman/tide@v6"
   "catppuccin/fish")
 
 FLATPAKS=("org.gtk.Gtk3theme.adw-gtk3"
   "org.gtk.Gtk3theme.adw-gtk3-dark"
+  "org.kde.WaylandDecoration.QAdwaitaDecorations"
   "com.github.tchx84.Flatseal"
   "dev.alextren.Spot")
 
 COMMON_PACKAGES=("kitty"
+  "dash"
   "fish"
   "starship"
   "fzf"
@@ -29,6 +26,7 @@ COMMON_PACKAGES=("kitty"
   "ripgrep"
   "eza"
   "lsd"
+  "lf"
   "lazygit"
   "difftastic"
   "git-delta"
@@ -53,8 +51,12 @@ ARCH_PACKAGES=("fisher"
   "adw-gtk-theme")
 
 FEDORA_PACKAGES=("fd-find"
+  "qadwaitadecorations-qt5"
+  "qadwaitadecorations-qt6"
+  "dnf-plugins-core"
   "adw-gtk3-theme"
-  "igt-gpu-tools")
+  "igt-gpu-tools"
+  "mise")
 
 if ! has_cmd "git-fuzzy"; then
   ln -s ~/.local/share/git-fuzzy/bin/git-fuzzy ~/.local/bin/git-fuzzy
@@ -69,36 +71,18 @@ if has_cmd "flatpak"; then
   done
 fi
 
-if ! has_cmd "asdf"; then
-  git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch $ASDF_VERSION
-  . "$HOME/.bash_profile"
-fi
-
-existing_asdf_plugins=($(asdf plugin list))
-for plugin in ${!ASDF_PLUGINS[@]}; do
-  if [[ ! " ${existing_asdf_plugins[@]} " =~ " ${plugin} " ]]; then
-    asdf plugin add $plugin ${ASDF_PLUGINS["$plugin"]}
-  fi
-done
-
-node_lts="$(asdf list-all nodejs | grep "^18" | tail -1)"
-asdf install nodejs "$node_lts" &&
-  asdf global nodejs "$node_lts"
-
-asdf install poetry latest &&
-  asdf global poetry latest
-
 {{- if eq .chezmoi.osRelease.id "arch" }}
 
 {{- if .sway_conf }}
-sudo pacman -Syu --noconfirm --needed sway waybar swayidle wofi cliphist
+sudo pacman -Syu --noconfirm --needed sway waybar swaylock swayidle wofi cliphist
 # Wayland object leak fix not yet in repo (https://github.com/swaywm/swaylock/commit/10df946671a12b4c0f4c13d4556a8bae6fc30394)
-yay -S --needed --noconfirm swaylock-git swayosd-git
+yay -S --needed --noconfirm swayosd-git
 
 # For capslock OSD indicator
 # sudo systemctl enable --now swayosd-libinput-backend.service
 
 {{- end }}
+yay -S --needed --noconfirm mise-bin qadwaitadecorations-qt5 qadwaitadecorations-qt6
 
 sudo pacman -Syu --noconfirm --needed ${COMMON_PACKAGES[@]} ${ARCH_PACKAGES[@]}
 
@@ -110,6 +94,14 @@ for app in "lazygit" "starship"; do
   fi
 done
 
+if ! sudo dnf -C -q info lf >/dev/null 2>&1; then
+  sudo dnf copr enable pennbauman/ports -y
+fi
+
+if ! sudo dnf -C -q info mise >/dev/null 2>&1; then
+  sudo dnf config-manager --add-repo https://mise.jdx.dev/rpm/mise.repo
+fi
+
 sudo dnf upgrade --refresh -y &&
   sudo dnf install -y ${COMMON_PACKAGES[@]} ${FEDORA_PACKAGES[@]}
 
@@ -118,6 +110,9 @@ if ! fish -c "fisher" >/dev/null 2>&1; then
 fi
 
 {{- end }}
+
+mise trust "${XDG_CONFIG_HOME}/mise/config.toml"
+mise up
 
 existing_fish_plugins=($(fish -c 'fisher list'))
 for plugin in ${FISH_PLUGINS[@]}; do
