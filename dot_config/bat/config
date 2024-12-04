@@ -14,7 +14,8 @@
 
 --style="auto"
 
---line-range=:1000
+# Only prints lines in range
+#--line-range=:1000
 
 # Enable this to use italic text on the terminal. This is not supported on all
 # terminal emulators (like tmux, by default):
