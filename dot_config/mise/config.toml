@@ -1,0 +1,9 @@
+[tools]
+usage = "latest"
+node = "lts-jod"
+poetry = "latest"
+deno = "latest"
+[alias.node.versions]
+lts-hydrogen = "18"
+lts-iron = "20"
+lts-jod = "22"
