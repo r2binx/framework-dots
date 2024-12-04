@@ -5,18 +5,8 @@ PartOf=sway-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/swayidle -w \
-        timeout 30 'if pgrep -x swaylock; then swaymsg "output * dpms off"; fi' \
-    	    resume 'swaymsg "output * dpms on"' \
-        timeout 210 'pgrep -x swaylock > /dev/null || ~/.config/sway/swaylock.sh' \
-        timeout 270 'swaymsg "output * dpms off"' \
-    	    resume 'swaymsg "output * dpms on"' \
-        timeout 900 'systemctl suspend' \
-    	    resume 'swaymsg "output * dpms on"' \
-        before-sleep 'playerctl pause' \
-        before-sleep 'loginctl lock-session' \
-        after-resume 'swaymsg "output * dpms on"' \
-        lock 'pgrep -x swaylock > /dev/null || ~/.config/sway/swaylock.sh'
+EnvironmentFile=%h/.config/swayidle/timeouts
+ExecStart=%h/.local/bin/swayidle-wrapper.sh
 ExecStop=/bin/kill -2 $MAINPID
 Restart=on-failure
 RestartSec=1

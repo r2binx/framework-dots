@@ -1,7 +1,5 @@
 corepack
 bun
-pnpm
-yarn
 prettier
 eslint
 vite

@@ -54,4 +54,6 @@ alias myip="curl ifconfig.co"
 alias cal="cal -m -w"
 alias lg="lazygit"
 alias gf="git-fuzzy"
+alias lazyvim="NVIM_APPNAME=lazyvim nvim"
+alias lvim="NVIM_APPNAME=lazyvim nvim"
 # vim:ft=bash

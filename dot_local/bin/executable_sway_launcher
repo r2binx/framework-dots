@@ -13,6 +13,9 @@ set -a
 # [[ -f "${ZDOTDIR}/.zlogin" ]] && . "${ZDOTDIR}/.zlogin"
 set +a
 
+# Set theme before launching sway
+"${HOME}/.config/scripts/decide_theme.sh"
+
 printf "Launching sway\n"
-exec systemd-cat --identifier=sway /usr/bin/sway
+exec systemd-cat --identifier=sway env WLR_RENDERER=vulkan /usr/bin/sway
 # exec /usr/bin/sway

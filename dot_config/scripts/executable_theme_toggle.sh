@@ -340,9 +340,10 @@ waybar_style() {
 			return
 			;;
 	esac
+	 
+	import="@import \"../colors/waybar/${selected}\";"
 
-	cp "${XDG_CONFIG_HOME}/colors/waybar/${selected}" "${XDG_CACHE_HOME}/colors/waybar.css"
-
+	sed -i "1s|.*|${import}|" "${XDG_CONFIG_HOME}/waybar/style.css"
 }
 
 copy_color_files() {

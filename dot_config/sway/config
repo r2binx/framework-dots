@@ -39,7 +39,7 @@ bar {
     gaps 5 5 0 5
 }
 
-bindsym $mod+o bar mode toggle
+bindsym $mod+o bar bar-0 mode toggle
 
 bindsym $mod+Shift+n exec swaync-client -t -sw
 
@@ -76,6 +76,7 @@ output $laptop {
     pos 0,0
     scale 1.5
     scale_filter smart
+    color_profile icc /usr/share/color/icc/colord/BOE_CQ_______NE135FBM_N41_01.icm
     subpixel rgb
 }
 
@@ -141,7 +142,7 @@ mouse_warping none
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
-    bindsym $mod+Shift+Ctrl+c sway_reload
+    bindsym $mod+Shift+Ctrl+c exec sway_reload
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -261,7 +262,7 @@ for_window [title = "Firefox - Sharing Indicator"] kill
 for_window [title = "Firefox — Sharing Indicator"] kill
 # Some websites trigger floating mode with this rule
 #for_window [app_id="firefox" title="Library"] floating enable, border pixel 2, sticky enable
-for_window [app_id = "pavucontrol"] floating enable
+for_window [app_id = "pavucontrol"] floating enable, move position cursor, move down 60, move left 12, resize set 590 430
 #for_window [title = "Thunderbird Preferences"] floating enable
 #for_window [title = "*Reminder"] floating enable
 for_window [title = "Page Info - .*"] floating enable
@@ -293,7 +294,8 @@ for_window [app_id = "qt5ct"] floating enable
 for_window [app_id = "gnome-tweaks"] floating enable
 for_window [class = "Bluetooth-sendto" instance = "bluetooth-sendto"] floating enable
 for_window [window_role = "Preferences"] floating enable
-for_window [title = "Picture-in-Picture"] floating enable, resize set width 670 px height 430 px, sticky enable, opacity 0.8
+for_window [title = "Picture-in-Picture"] floating enable, resize set width 621 px height 350 px, sticky enable, opacity 0.85, move absolute position 870 px 640 px
+for_window [title = "Picture in picture"] floating enable, resize set width 621 px height 350 px, sticky enable, opacity 0.85, move absolute position 870 px 640 px
 for_window [app_id = "flameshot"] floating enable
 for_window [title = "Firefox - Choose User Profile" ] floating enable
 for_window [app_id="toolbox"]                    floating enable
@@ -403,6 +405,22 @@ mode "opacity" {
 }
 
 bindsym $mod+Shift+o mode "opacity"
+
+mode "floaty" {
+
+    bindsym l move absolute position 870 px 640 px
+
+    bindsym h move absolute position 15 px 640 px
+
+    # toggle sticky
+    bindsym s sticky toggle
+
+    # Return to default mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+m mode "floaty"
 
 include ~/.cache/colors/sway
 

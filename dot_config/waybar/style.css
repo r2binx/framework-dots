@@ -1,11 +1,23 @@
+@import "../colors/waybar/frappe.css";
+
 * {
   font-family: "JetBrainsMono NF";
   font-size: 11pt;
   font-weight: 600;
   min-height: 0;
+  border: none;
 }
 
-#waybar {
+window#waybar {
+  background-color: transparent;
+  transition-property: background-color;
+}
+
+window#waybar.hidden {
+  background-color: transparent;
+}
+
+window#waybar > .horizontal {
   border-radius: 12px;
   background-color: @base;
 }
@@ -65,6 +77,7 @@ tooltip label {
 #backlight,
 #pulseaudio,
 #bluetooth,
+#power-profiles-daemon,
 #network,
 #battery,
 #custom-powermenu,
@@ -77,6 +90,10 @@ tooltip label {
 }
 
 #mode {
+  color: @text;
+}
+
+#power-profiles-daemon {
   color: @text;
 }
 
@@ -105,7 +122,7 @@ tooltip label {
 }
 
 #custom-theme_toggle:hover {
-  color: @surface2;
+  color: @lavender;
 }
 
 #custom-theme_toggle {

@@ -25,7 +25,7 @@ export PNPM_HOME=~/.local/share/pnpm
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/podman/podman.sock"
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 export ELECTRON_TRASH=trash-cli
-export JAVA_HOME=/usr/lib/jvm/java-18-jdk
+export JAVA_HOME=/usr/lib/jvm/java-23-jdk
 export FZF_HISTDIR="${XDG_CONFIG_HOME}/fzf/history"
 
 typeset -U path PATH

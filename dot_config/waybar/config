@@ -3,6 +3,7 @@
   "position": "top",
   "mode": "dock",
   "margin": "5 5 0 5",
+  "reload_style_on_change": true,
   "modules-left": [
     "custom/launcher",
     "idle_inhibitor",
@@ -23,6 +24,7 @@
     "bluetooth",
     "battery",
     "tray",
+    "power-profiles-daemon",
     "sway/scratchpad",
     "custom/powermenu"
   ],
@@ -35,10 +37,10 @@
     "format": "{icon}",
     "format-icons": {
       "light": [
-        "",
-        "",
-        "",
-        ""
+        "󰃞",
+        "󰃝",
+        "󰃟",
+        "󰃠"
       ],
       "dark": [
         "",
@@ -75,8 +77,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "",
-      "deactivated": ""
+      "activated": "󰈈",
+      "deactivated": "󰈉"
     },
     "tooltip": false
   },
@@ -102,27 +104,27 @@
   },
   "pulseaudio": {
     "format": "{icon}",
-    "format-muted": "婢",
+    "format-muted": "󰖁",
     "format-icons": {
       "headphone": [
-        " ",
-        " ",
-        " "
+        " ",
+        " ",
+        " "
       ],
       "headset": [
-        "﫽 ",
-        "﫽 ",
-        "﫽 "
+        "󰋎 ",
+        "󰋎 ",
+        "󰋎 "
       ],
       "hands-free": [
-        " ",
-        " ",
-        " "
+        "󰥰 ",
+        "󰥰 ",
+        "󰥰 "
       ],
       "default": [
-        "",
-        "",
-        ""
+        "󰕿",
+        "󰖀",
+        "󰕾"
       ]
     },
     "states": {
@@ -131,7 +133,7 @@
     "on-scroll-up": "swayosd-client --output-volume 2",
     "on-scroll-down": "swayosd-client --output-volume -2",
     "on-click": "swayosd-client --output-volume mute-toggle",
-    "on-click-right": "pavucontrol",
+    "on-click-right": "pavucontrol -t 3",
     "reverse-scrolling": true,
     "smooth-scrolling-threshold": 1.5,
     "tooltip": false
@@ -143,19 +145,33 @@
       "critical": 10
     },
     "format": "{icon}",
-    "format-icons": [
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      "",
-      ""
-    ],
+    "format-icons": {
+      "default": [
+        "󰁺",
+        "󰁻",
+        "󰁼",
+        "󰁽",
+        "󰁾",
+        "󰁿",
+        "󰂀",
+        "󰂁",
+        "󰂂",
+        "󰁹"
+      ],
+      "charging": [
+        "󰢜",
+        "󰂆",
+        "󰂇",
+        "󰂈",
+        "󰢝",
+        "󰂉",
+        "󰢞",
+        "󰂊",
+        "󰂋",
+        "󰂅"
+      ]
+    },
     "format-plugged": " ",
-    "format-charging": " {icon}",
     "tooltip-format-plugged": "",
     "tooltip-format-charging": "  Charged in {time} ({capacity}%)",
     "tooltip-format-discharging": "  Empty in {time} ({capacity}%)",
@@ -189,14 +205,14 @@
   },
   "memory": {
     "interval": 4,
-    "format": "﬙ {percentage:2}%",
+    "format": "󰘚 {percentage:2}%",
     "states": {
       "warning": 85
     }
   },
   "cpu": {
     "interval": 4,
-    "format": " {usage:2}%"
+    "format": "󰍛 {usage:2}%"
   },
   "mpd": {
     "max-length": 25,
@@ -237,10 +253,10 @@
     "tooltip": true
   },
   "bluetooth": {
-    "format-on": "",
-    "format-disabled": "",
-    "format-off": "",
-    "format-connected": " {num_connections}",
+    "format-on": "󰂯",
+    "format-disabled": "󰂲",
+    "format-off": "󰂲",
+    "format-connected": "󰂱 {num_connections}",
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "tooltip-format-connected": "{device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
@@ -249,10 +265,21 @@
     "on-click-right": "blueman-manager"
   },
   "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon1/temp1_input",
+    "hwmon-path": "/sys/class/hwmon/hwmon7/temp1_input",
     "critical-threshold": 90,
     "tooltip": false,
     "format": " {temperatureC}°C"
+  },
+  "power-profiles-daemon": {
+    "format": "{icon}",
+    "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+    "tooltip": true,
+    "format-icons": {
+      "default": "",
+      "performance": "",
+      "balanced": "",
+      "power-saver": ""
+    }
   },
   "sway/scratchpad": {
     "format": "{icon} {count}",
