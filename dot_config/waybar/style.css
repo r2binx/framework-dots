@@ -175,6 +175,18 @@ tooltip label {
   color: @sky;
 }
 
+#bluetooth.disabled {
+  color: @yellow;
+}
+
+#bluetooth.connected {
+  color: @green;
+}
+
+#bluetooth.on {
+  color: @sapphire;
+}
+
 #network {
   padding-left: 0px;
   background-color: @surface0;
@@ -219,6 +231,7 @@ tooltip label {
 
 #battery.critical:not(.charging) {
   color: @red;
+  animation: blink 2s steps(5, start) infinite;
 }
 
 #custom-powermenu {
@@ -236,4 +249,10 @@ tooltip label {
 
 #mpd {
   color: #c0caf5;
+}
+
+@keyframes blink {
+    to {
+      visibility: hidden;
+    }
 }
