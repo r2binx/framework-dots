@@ -175,7 +175,7 @@ tooltip label {
   color: @sky;
 }
 
-#bluetooth.disabled {
+#bluetooth.off {
   color: @yellow;
 }
 
@@ -253,6 +253,6 @@ tooltip label {
 
 @keyframes blink {
     to {
-      visibility: hidden;
+      opacity: 0;
     }
 }
