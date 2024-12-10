@@ -265,7 +265,8 @@
     "on-click-right": "blueman-manager"
   },
   "temperature": {
-    "hwmon-path": "/dev/pkg_temp",
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
     "critical-threshold": 90,
     "tooltip": false,
     "format": " {temperatureC}°C"
