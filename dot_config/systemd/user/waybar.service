@@ -6,7 +6,7 @@ PartOf=sway-session.target
 [Service]
 Type=simple
 Environment="XDG_CURRENT_DESKTOP=Unity"
-ExecStart=%h/.local/bin/launch_waybar.sh -b bar-0
+ExecStart=/usr/bin/waybar -c %h/.config/waybar/config -b bar-0
 ExecReload=kill -SIGUSR2 $MAINPID
 ExecStop=/bin/kill -2 $MAINPID
 Restart=on-failure
