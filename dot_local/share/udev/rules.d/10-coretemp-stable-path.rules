@@ -1,0 +1,1 @@
+ACTION=="add", SUBSYSTEM=="hwmon", ATTRS{name}=="coretemp", RUN+="/bin/dash -c 'ln -s /sys$devpath/temp1_input /dev/pkg_temp'"
