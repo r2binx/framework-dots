@@ -265,7 +265,7 @@
     "on-click-right": "blueman-manager"
   },
   "temperature": {
-    "hwmon-path": "/sys/class/hwmon/hwmon8/temp1_input",
+    "hwmon-path": "{{HWMON_PATH}}",
     "critical-threshold": 90,
     "tooltip": false,
     "format": " {temperatureC}°C"

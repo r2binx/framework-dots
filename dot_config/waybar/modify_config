@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Read the input file from stdin
+content=$(cat)
+
+# Replace the hwmon-path line with our placeholder
+echo "${content}" | sed '/hwmon-path/c\    "hwmon-path": "{{HWMON_PATH}}",'
