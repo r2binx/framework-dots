@@ -7,12 +7,8 @@ has_cmd() {
 
 }
 
-if [ ! -f /etc/udev/hwdb.d/gsx-1000.hwdb ]; then
-  sudo ln -s "${HOME}/.local/share/udev/hwdb.d/gsx-1000.hwdb" /etc/udev/hwdb.d/gsx-1000.hwdb
-fi
-
-if [ ! -f /etc/udev/rules.d/10-coretemp-stable-path.rules ]; then
-  sudo ln -s ~/.local/share/udev/rules.d/10-coretemp-stable-path.rules /etc/udev/rules.d/10-coretemp-stable-path.rules
+if [ ! -f /etc/udev/hwdb.d/99-gsx-1000.hwdb ]; then
+  sudo ln -s "${HOME}/.local/share/udev/hwdb.d/99-gsx-1000.hwdb" /etc/udev/hwdb.d/99-gsx-1000.hwdb
 fi
 
 if has_cmd flatpak; then
