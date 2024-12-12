@@ -37,18 +37,15 @@ window#waybar > .horizontal {
 
 #workspaces button.focused {
   color: @sky;
-  border-radius: 1rem;
 }
 
 #workspaces button.urgent {
   color: @yellow;
-  border-radius: 1rem;
+  animation: blink 1s ease-in infinite;
 }
 
 #workspaces button:hover {
-  background-color: @pink;
-  color: @sapphire;
-  border-radius: 1rem;
+  background-color: @flamingo;
 }
 
 tooltip {
@@ -231,7 +228,7 @@ tooltip label {
 
 #battery.critical:not(.charging) {
   color: @red;
-  animation: blink 2s steps(5, start) infinite;
+  animation: blink 2s steps(2, start) infinite;
 }
 
 #custom-powermenu {

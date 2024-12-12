@@ -16,6 +16,10 @@ type = "file"
 url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.csh"
 refreshPeriod = "168h"
 executable = true
+[".config/delta/catppuccin.gitconfig"]
+type = "file"
+url = "https://raw.githubusercontent.com/catppuccin/delta/refs/heads/main/catppuccin.gitconfig"
+refreshPeriod = "168h"
 [".local/bin/lscolors.sh"]
 type = "file"
 url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh"
