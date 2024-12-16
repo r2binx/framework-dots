@@ -243,12 +243,31 @@ wofi_colors() {
     selected="${themes[0]}"
     ;;
   *)
-    echo "Invalid cursor theme: ${1}"
+    echo "Invalid wofi theme: ${1}"
     return
     ;;
   esac
 
   cp ~/.config/wofi/"${selected}" ~/.config/wofi/colors
+}
+
+gitui_colors() {
+  themes=("catppuccin-frappe.ron" "catppuccin-mocha.ron")
+
+  case $1 in
+  dark)
+    selected="${themes[1]}"
+    ;;
+  light)
+    selected="${themes[0]}"
+    ;;
+  *)
+    echo "Invalid gitui theme: ${1}"
+    return
+    ;;
+  esac
+
+  cp ~/.config/colors/gitui/"${selected}" ~/.config/gitui/theme.ron
 }
 
 lsd_colors() {

@@ -30,6 +30,13 @@ type = "git-repo"
 url = "https://github.com/bigH/git-fuzzy.git"
 exact = true
 refreshPeriod = "744h"
+[".config/colors/gitui"]
+type = "archive"
+exact = false
+refreshPeriod = "744h"
+stripComponents = 2
+include = ["*/themes/**"]
+url = "https://github.com/catppuccin/gitui/archive/refs/heads/main.zip"
 [".config/bat/themes"]
 type = "archive"
 exact = false

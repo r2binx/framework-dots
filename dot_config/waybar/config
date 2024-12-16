@@ -22,12 +22,47 @@
     "pulseaudio",
     "network",
     "bluetooth",
-    "battery",
+    "group/power",
     "tray",
-    "power-profiles-daemon",
     "sway/scratchpad",
-    "custom/powermenu"
+    "group/power-menu"
   ],
+  "group/power": {
+    "orientation": "inherit",
+    "modules": [
+      "battery",
+      "power-profiles-daemon"
+    ],
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-power",
+      "transition-left-to-right": false,
+      "click-to-reveal": true
+    }
+  },
+  "group/power-menu": {
+    "orientation": "inherit",
+    "modules": [
+      "custom/powermenu",
+      "custom/lock",
+      "custom/quit"
+    ],
+    "drawer": {
+      "transition-duration": 500,
+      "children-class": "not-power",
+      "transition-left-to-right": false
+    }
+  },
+  "custom/quit": {
+    "format": "󰍃",
+    "tooltip": false,
+    "on-click": "swaymsg exit"
+  },
+  "custom/lock": {
+    "format": "󰌾",
+    "tooltip": false,
+    "on-click": "exec ~/.config/sway/swaylock.sh"
+  },
   "custom/launcher": {
     "format": " ",
     "on-click": "wofi_wrapper -l",

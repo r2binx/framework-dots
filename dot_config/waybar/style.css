@@ -81,6 +81,8 @@ tooltip label {
 #custom-cava-internal,
 #custom-launcher,
 #custom-theme_toggle,
+#custom-quit,
+#custom-lock,
 #custom-notification {
   padding: 0.4rem 1rem;
   margin: 5px 0;
@@ -90,8 +92,26 @@ tooltip label {
   color: @text;
 }
 
+#custom-quit,
+#custom-lock {
+  color: @text;
+}
+
 #power-profiles-daemon {
   color: @text;
+  background-color: @surface0;
+}
+
+#power-profiles-daemon.power-saver {
+  color: @green;
+}
+
+#power-profiles-daemon.balanced {
+  color: @teal;
+}
+
+#power-profiles-daemon.performance {
+  color: @peach;
 }
 
 #scratchpad {
