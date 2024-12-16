@@ -389,6 +389,8 @@ copy_color_files() {
   sway_style "$1"
   swaync_style "$1"
   lsd_colors "$1"
+  wofi_colors "$1"
+  gitui_colors "$1"
 }
 
 set_gtk_settings() {
@@ -421,7 +423,6 @@ if [ "$1" = "light" ]; then
   set_gtk_settings light
   #chrome_light
   #set_adw_ff_theme light
-  wofi_colors light
   set_btop_theme light
   set_nvim_cat_flavour light
   kitty_colorscheme light
@@ -443,7 +444,6 @@ elif [ "$1" = "dark" ]; then
   set_gtk_settings dark
   #chrome_dark
   #set_adw_ff_theme dark
-  wofi_colors dark
   set_nvim_cat_flavour dark
   set_btop_theme dark
   kitty_colorscheme dark
