@@ -5,10 +5,22 @@ return {
       colorscheme = "catppuccin",
     },
   },
+  -- {
+  --   "folke/snacks.nvim",
+  --   opts = {
+  --     styles = {
+  --       terminal = {
+  --         -- Matches the split terminal background color with the normal background color
+  --         wo = { winhighlight = "NormalFloat:Normal,WinBar:SnacksWinBar" },
+  --       },
+  --     },
+  --   },
+  -- },
   {
     "catppuccin",
     opts = {
       flavour = "frappe",
+      term_colors = true,
       integrations = {
         indent_blankline = {
           enabled = true,

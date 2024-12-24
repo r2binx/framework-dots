@@ -134,7 +134,7 @@ set_nvim_cat_flavour() {
     fi
   done
 
-  sed -i "/flavour/c\ \ \ \ \ \ flavour = \"${selected}\"," ~/.config/nvim/lua/community.lua
+  sed -i "/flavour/c\ \ \ \ \ \ flavour = \"${selected}\"," ~/.config/nvim/lua/plugins/core.lua
 }
 
 set_btop_theme() {

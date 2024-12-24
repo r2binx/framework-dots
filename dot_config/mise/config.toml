@@ -1,8 +1,8 @@
 [tools]
 usage = "latest"
 node = "lts-jod"
-poetry = "latest"
 deno = "latest"
+"pipx:pdm" = "latest"
 [alias.node.versions]
 lts-hydrogen = "18"
 lts-iron = "20"

@@ -24,7 +24,7 @@ window#waybar > .horizontal {
 
 #workspaces {
   background-color: @surface0;
-  border-radius: 0px 1rem 1rem 0px;
+  border-radius: 1rem;
   margin: 5px;
   margin-left: 0px;
 }
@@ -81,8 +81,6 @@ tooltip label {
 #custom-cava-internal,
 #custom-launcher,
 #custom-theme_toggle,
-#custom-quit,
-#custom-lock,
 #custom-notification {
   padding: 0.4rem 1rem;
   margin: 5px 0;
@@ -94,11 +92,15 @@ tooltip label {
 
 #custom-quit,
 #custom-lock {
+  padding: 0.4rem 0.75rem;
+  margin: 5px 0;
   color: @text;
 }
 
-#power-profiles-daemon {
+.not-power > #power-profiles-daemon {
   color: @text;
+  padding-left: 0.5rem;
+  padding-right: 1.2rem;
   background-color: @surface0;
 }
 
@@ -156,7 +158,6 @@ tooltip label {
 }
 
 #idle_inhibitor {
-  border-radius: 1rem 0px 0px 1rem;
   background-color: @surface0;
   color: @mauve;
 }

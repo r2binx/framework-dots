@@ -6,7 +6,6 @@
   "reload_style_on_change": true,
   "modules-left": [
     "custom/launcher",
-    "idle_inhibitor",
     "sway/workspaces",
     "temperature",
     "memory",
@@ -31,6 +30,7 @@
     "orientation": "inherit",
     "modules": [
       "battery",
+      "idle_inhibitor",
       "power-profiles-daemon"
     ],
     "drawer": {
