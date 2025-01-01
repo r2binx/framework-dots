@@ -129,7 +129,7 @@ set_nvim_cat_flavour() {
   esac
 
   for SOCK in "${XDG_RUNTIME_DIR}"/nvim.*; do
-    if [ -f "${SOCK}" ]; then
+    if [ -S "${SOCK}" ]; then
       nvim --server "${SOCK}" --remote-send "<CMD>:Catppuccin ${selected}<CR>" >/dev/null
     fi
   done
@@ -318,7 +318,7 @@ kitty_colorscheme() {
     ;;
   esac
 
-  kitty +kitten themes --reload-in=all "${selected}"
+  #  kitty +kitten themes --reload-in=all "${selected}"
   sed -i -r "s@^include themes/.*@include ${selected_diff}@" ~/.config/kitty/diff.conf
 
 }
@@ -424,7 +424,7 @@ if [ "$1" = "light" ]; then
   #chrome_light
   #set_adw_ff_theme light
   set_btop_theme light
-  set_nvim_cat_flavour light
+  # set_nvim_cat_flavour light
   kitty_colorscheme light
   echo "light" >/tmp/theme
   if [ "${XDG_CURRENT_DESKTOP}" = "sway" ]; then
@@ -444,7 +444,7 @@ elif [ "$1" = "dark" ]; then
   set_gtk_settings dark
   #chrome_dark
   #set_adw_ff_theme dark
-  set_nvim_cat_flavour dark
+  # set_nvim_cat_flavour dark
   set_btop_theme dark
   kitty_colorscheme dark
   echo "dark" >/tmp/theme

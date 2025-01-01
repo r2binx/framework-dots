@@ -30,6 +30,22 @@ return {
     },
   },
   {
+    "f-person/auto-dark-mode.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {
+      update_interval = 1000,
+      set_dark_mode = function()
+        vim.api.nvim_set_option_value("background", "dark", {})
+        vim.cmd("Catppuccin mocha")
+      end,
+      set_light_mode = function()
+        vim.api.nvim_set_option_value("background", "dark", {})
+        vim.cmd("Catppuccin frappe")
+      end,
+    },
+  },
+  {
     "chrisgrieser/nvim-spider",
     keys = {
       {
